@@ -5,7 +5,6 @@ function setDateText() {
 
 function createDate(docRef) {
     docRef.set({
-        complete: false,
         meditation: false,
         composition: false,
     }).catch(function(error) {
@@ -47,7 +46,9 @@ function updateGoalsFromDB(data) {
     }
     
     if (complete) {
-        alert('Done for the day!');
+        $('#content').fadeOut('slow', function() {
+            $('#complete').fadeIn('slow');
+        }
     }
 }
 
