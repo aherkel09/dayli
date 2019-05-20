@@ -2,18 +2,18 @@ class Dayli {
     constructor(year, date) {
         this.year = year;
         this.date = date;
-        this.docRef = firebase.firestore().collection(year).doc(date);
+        this.docRef = firebase.firestore().collection(this.year).doc(this.date);
     }
     
-    getDoc() {
+    update() {
         console.log('getting data for ' + this.date + '-' + this.year + '...');
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log('found data...');
-                return doc.data();
+                displayData(doc.data());
             } else {
-                console.log('no data...');
-                return false;
+                console.log('creating data...');
+                return this.createDoc();
             }
         }).catch(function(error) {
             console.log(error);
@@ -29,16 +29,6 @@ class Dayli {
         }).catch(function(error) {
             console.log(error);
         });
-    }
-    
-    update() {
-        console.log('updating...');
-        var data = this.getDoc();
-        if (data) {
-            displayData(data);
-        } else {
-            this.createDoc();
-        }
     }
     
     markDone(goal) {
