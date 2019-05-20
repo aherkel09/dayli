@@ -48,7 +48,7 @@ function updateGoalsFromDB(data) {
     if (complete) {
         $('#content').fadeOut('slow', function() {
             $('#complete').fadeIn('slow');
-        }
+        });
     }
 }
 
