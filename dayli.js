@@ -51,7 +51,6 @@ function getDate() {
 }
 
 function displayData(data) {
-    console.log('displaying data...');
     var complete = true;
     
     for (var d in data) {
