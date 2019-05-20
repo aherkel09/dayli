@@ -3,15 +3,17 @@ class Dayli {
         this.docRef = firebase.firestore().collection(year).doc(date);
     }
     
-    getData() {
+    getDoc() {
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
                 return doc.data();
+            } else {
+                return false;
             }
         }).catch(function(error) {
             console.log(error);
+            return false;
         });
-        return this.createDoc();
     }
     
     createDoc() {
@@ -24,20 +26,11 @@ class Dayli {
     }
     
     update() {
-        var data = this.getData();
-        console.log(data);
-        var complete = true;
-        for (var d in data) {
-            if (data[d] == true) {
-                $('#' + d).fadeOut('slow');
-            } else if (data[d] == false) {
-                complete = false;
-            }
-        }
-        if (complete) {
-            $('#content').fadeOut('slow', function() {
-                $('#complete').fadeIn('slow');
-            });
+        var data = this.getDoc();
+        if (data) {
+            displayData(data);
+        } else {
+            this.createDoc();
         }
     }
     
@@ -48,8 +41,8 @@ class Dayli {
             return true;
         }).catch(function(error) {
             console.log(error);
+            return false;
         });
-        return false;
     }
 }
 
@@ -64,9 +57,25 @@ function getDate() {
     };
 }
 
+function displayData(data) {
+    console.log(data);
+    var complete = true;
+    for (var d in data) {
+        if (data[d] == true) {
+            $('#' + d).fadeOut('slow');
+        } else if (data[d] == false) {
+            complete = false;
+        }
+    }
+    if (complete) {
+        $('#content').fadeOut('slow', function() {
+            $('#complete').fadeIn('slow');
+        });
+    }
+}
+
 $(document).ready(function() {
     var date = getDate();
-    
     dayli = new Dayli(date.year, date.date);
     dayli.update();
     
