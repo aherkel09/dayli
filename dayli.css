@@ -38,6 +38,27 @@ html {
 	color: var(--greyscale);
 }
 
+/* Enables fixed background on mobile
+Based on Vincent's answer on Stack Overflow
+https://stackoverflow.com/questions/26372127/background-fixed-no-repeat-not-working-on-mobile
+*/
+body:before {
+	content: "";
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -10;
+	background-color: black;
+	background: url(iceberg.png) no-repeat center center;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
+}
+
 a {
 	color: var(--brand);
 	cursor: pointer;
