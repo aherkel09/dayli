@@ -52,11 +52,11 @@ function updateGoalsFromDB(data) {
 }
 
 function markDone(ev) {
+    var data = {};
     var goal = $(ev.target).closest('.card').attr('id');
+    data[goal] = true;
     var ref = getRef();
-    ref.update({
-        goal: true,
-    }).then(function() {
+    ref.update(data).then(function() {
         checkDate();
     }).catch(function(error) {
         console.log(error);
