@@ -25,6 +25,7 @@ class Dayli {
     
     update() {
         var data = this.getData();
+        console.log(data);
         var complete = true;
         for (var d in data) {
             if (data[d] == true) {
