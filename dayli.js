@@ -7,7 +7,7 @@ class Dayli {
     
     update() {
         console.log('getting data for ' + this.date + '-' + this.year + '...');
-        this.docRef.get().then(function(this, doc) {
+        this.docRef.get().then(function(doc, this) {
             if (doc.exists) {
                 console.log('found data...');
                 displayData(doc.data());
