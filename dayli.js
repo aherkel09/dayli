@@ -6,23 +6,18 @@ class Dayli {
     }
     
     update() {
-        console.log('getting data for ' + this.date + '-' + this.year + '...');
-        this.docRef.get().then(function(doc, this) {
+        this.docRef.get().then(function(doc) {
             if (doc.exists) {
-                console.log('found data...');
                 displayData(doc.data());
             } else {
-                console.log('creating data...');
-                return this.createDoc();
+                createData();
             }
         }).catch(function(error) {
             console.log(error);
-            return false;
         });
     }
     
     createDoc() {
-        console.log('creating new doc...');
         this.docRef.set({
             meditation: false,
             composition: false,
@@ -35,8 +30,8 @@ class Dayli {
         console.log('marking done...');
         var data = {};
         data[goal] = true;
-        this.docRef.update(data).then(function(this) {
-            this.update();
+        this.docRef.update(data).then(function() {
+            updateData();
         }).catch(function(error) {
             console.log(error);
         });
@@ -54,9 +49,20 @@ function getDate() {
     };
 }
 
+function createData() {
+    console.log('creating data...');
+    dayli.createDoc();
+}
+
+function updateData() {
+    console.log('updating data...');
+    dayli.update();
+}
+
 function displayData(data) {
     console.log('displaying data...');
     var complete = true;
+    
     for (var d in data) {
         if (data[d] == true) {
             $('#' + d).fadeOut('slow');
@@ -64,6 +70,7 @@ function displayData(data) {
             complete = false;
         }
     }
+    
     if (complete) {
         $('#content').fadeOut('slow', function() {
             $('#complete').fadeIn('slow');
@@ -74,7 +81,7 @@ function displayData(data) {
 $(document).ready(function() {
     var date = getDate();
     dayli = new Dayli(date.year, date.date);
-    dayli.update();
+    updateData();
     
     $('.card').click(function(ev) {
         var goal = $(ev.target).closest('.card').attr('id');
