@@ -54,7 +54,7 @@ class Dayli {
 
 function getDate() {
     var date = new Date();
-    $('#date').text(date.toDateString()).fadeIn('slow');
+    $('#date').text(date.toDateString());
     var year = String(date.getFullYear());
     var date = String(date.getMonth()+1) + '-' + String(date.getDate());
     return {
@@ -71,5 +71,6 @@ $(document).ready(function() {
         var goal = $(ev.target).closest('.card').attr('id');
         dayli.markDone(goal);
     });
+    $('#header').fadeIn('slow');
     $('#content').fadeIn('slow');
 });
