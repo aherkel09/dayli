@@ -9,8 +9,10 @@ class Dayli {
         console.log('getting data for ' + this.date + '-' + this.year + '...');
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
+                console.log('found data...');
                 return doc.data();
             } else {
+                console.log('no data...');
                 return false;
             }
         }).catch(function(error) {
