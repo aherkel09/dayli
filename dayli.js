@@ -3,17 +3,15 @@ class Dayli {
         this.docRef = firebase.firestore().collection(year).doc(date);
     }
     
-    getDoc() {
+    getData() {
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
-                console.log(doc.data());
-                this.update(doc.data());
-            } else {
-                this.createDoc();
+                return doc.data();
             }
         }).catch(function(error) {
             console.log(error);
         });
+        return this.createDoc();
     }
     
     createDoc() {
@@ -25,7 +23,8 @@ class Dayli {
         });
     }
     
-    update(data) {
+    update() {
+        var data = this.getData();
         var complete = true;
         for (var d in data) {
             if (data[d] == true) {
@@ -45,10 +44,11 @@ class Dayli {
         var data = {};
         data[goal] = true;
         this.docRef.update(data).then(function() {
-            this.getDoc();
+            return true;
         }).catch(function(error) {
             console.log(error);
         });
+        return false;
     }
 }
 
@@ -65,13 +65,17 @@ function getDate() {
 
 $(document).ready(function() {
     var date = getDate();
-    console.log(date.year + ', ' + date.date);
+    
     dayli = new Dayli(date.year, date.date);
-    dayli.getDoc();
+    dayli.update();
+    
     $('.card').click(function(ev) {
         var goal = $(ev.target).closest('.card').attr('id');
-        dayli.markDone(goal);
+        if (dayli.markDone(goal)) {
+            dayli.update();
+        }
     });
+    
     $('#header').fadeIn('slow');
     $('#content').fadeIn('slow');
 });
