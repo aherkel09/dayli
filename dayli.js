@@ -19,7 +19,7 @@ function checkDate() {
     var ref = firebase.firestore().collection(year).doc(monthAndDay);
     ref.get().then(function(doc) {
         if (doc.exists) {
-            updateGoalsFromDB();(doc.data());
+            updateGoalsFromDB(doc.data());
         } else {
             createDate(ref);
         }
