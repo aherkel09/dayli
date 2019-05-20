@@ -17,7 +17,7 @@ function checkDate() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth() + 1;
-    var year = date.getFullYear();
+    var year = String(date.getFullYear());
     var monthAndDay = month + '-' + day;
     
     firebase.firestore().collection(year).doc(monthAndDay).get().then(function(doc) {
