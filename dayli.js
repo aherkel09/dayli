@@ -5,4 +5,5 @@ function displayDate() {
 
 $(document).ready(function() {
     displayDate();
+    $('#content').fadeIn('slow');
 });
