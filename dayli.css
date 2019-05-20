@@ -1,7 +1,7 @@
 /* Color Scheme */
 
 :root {
-    --brand: #4bee8f;
+	--brand: #4bee8f;
 	--accent: #74b6b5;
 	--light: #b5fdaf;
 	--dark: #676087;
@@ -74,3 +74,71 @@ button:hover {
 	transform: scale(1.1);
 }
 
+
+
+/* Content */
+
+#content {
+	padding: 1em 0.5em;
+}
+
+.content-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 50%);
+	grid-auto-rows: 1fr;
+}
+
+.loader {
+	border: 0.5em dotted var(--greyscale);
+	border-top: 0.5em dotted var(--brand);
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	margin: 0.5em auto;
+	animation: spin 2s linear infinite;
+}
+
+.hidden, .content-container {
+	display: none;
+}
+
+.info {
+	font-size: 0.75em;
+	cursor: pointer;
+}
+
+.right {
+	text-align: right;
+}
+
+.card {
+	background-color: rgba(103, 96, 135, 0.75);
+	border: 0.25em solid var(--accent);
+	border-radius: 0.5em;
+	padding: 0.5em;
+}
+
+.card {
+	display: inline-block;
+	margin: 0.25em;
+}
+
+.card:hover {
+	background-color: rgb(116, 182, 181, 0.5);
+}
+
+
+
+/* Media Queries */
+
+/* Extra small devices (phones, 600px and down) */
+@media screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media screen and (min-width: 600px) {
+	.content-grid {
+		grid-template-columns: repeat(auto-fit, 33%);
+	}
+}
