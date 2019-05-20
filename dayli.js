@@ -1,9 +1,12 @@
 class Dayli {
     constructor(year, date) {
+        this.year = year;
+        this.date = date;
         this.docRef = firebase.firestore().collection(year).doc(date);
     }
     
     getDoc() {
+        console.log('getting data for ' + this.date + '-' + this.year + '...');
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
                 return doc.data();
@@ -17,6 +20,7 @@ class Dayli {
     }
     
     createDoc() {
+        console.log('creating new doc...');
         this.docRef.set({
             meditation: false,
             composition: false,
@@ -26,9 +30,9 @@ class Dayli {
     }
     
     update() {
+        console.log('updating...');
         var data = this.getDoc();
         if (data) {
-            console.log('found data.');
             displayData(data);
         } else {
             this.createDoc();
@@ -36,10 +40,10 @@ class Dayli {
     }
     
     markDone(goal) {
+        console.log('marking done...');
         var data = {};
         data[goal] = true;
         this.docRef.update(data).then(function() {
-            console.log('marked done.');
             return true;
         }).catch(function(error) {
             console.log(error);
@@ -60,7 +64,7 @@ function getDate() {
 }
 
 function displayData(data) {
-    console.log(data);
+    console.log('displaying data...');
     var complete = true;
     for (var d in data) {
         if (data[d] == true) {
