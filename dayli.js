@@ -7,7 +7,7 @@ class Dayli {
     
     update() {
         console.log('getting data for ' + this.date + '-' + this.year + '...');
-        this.docRef.get().then(function(doc) {
+        this.docRef.get().then(function(this, doc) {
             if (doc.exists) {
                 console.log('found data...');
                 displayData(doc.data());
@@ -35,11 +35,10 @@ class Dayli {
         console.log('marking done...');
         var data = {};
         data[goal] = true;
-        this.docRef.update(data).then(function() {
-            return true;
+        this.docRef.update(data).then(function(this) {
+            this.update();
         }).catch(function(error) {
             console.log(error);
-            return false;
         });
     }
 }
@@ -79,9 +78,7 @@ $(document).ready(function() {
     
     $('.card').click(function(ev) {
         var goal = $(ev.target).closest('.card').attr('id');
-        if (dayli.markDone(goal)) {
-            dayli.update();
-        }
+        dayli.markDone(goal);
     });
     
     $('#header').fadeIn('slow');
