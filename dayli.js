@@ -65,7 +65,8 @@ function getDate() {
 
 $(document).ready(function() {
     var date = getDate();
-    var dayli = new Dayli(date.year, date.date);
+    console.log(date.year + ', ' + date.date);
+    dayli = new Dayli(date.year, date.date);
     dayli.getDoc();
     $('.card').click(function(ev) {
         var goal = $(ev.target).closest('.card').attr('id');
