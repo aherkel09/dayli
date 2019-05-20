@@ -4,7 +4,7 @@ function setDate() {
 }
 
 function markDone(ev) {
-    $(ev.target).fadeOut('slow');
+    $(ev.target).closest('.card').fadeOut('slow');
 }
 
 $(document).ready(function() {
