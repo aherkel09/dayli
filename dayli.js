@@ -6,11 +6,12 @@ class Dayli {
     }
     
     update() {
+        var _this = this;
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
                 displayData(doc.data());
             } else {
-                createData();
+                _this.createDoc();
             }
         }).catch(function(error) {
             console.log(error);
@@ -27,11 +28,11 @@ class Dayli {
     }
     
     markDone(goal) {
-        console.log('marking done...');
+        var _this = this;
         var data = {};
         data[goal] = true;
         this.docRef.update(data).then(function() {
-            updateData();
+            _this.update();
         }).catch(function(error) {
             console.log(error);
         });
@@ -47,16 +48,6 @@ function getDate() {
         year: year,
         date: date,
     };
-}
-
-function createData() {
-    console.log('creating data...');
-    dayli.createDoc();
-}
-
-function updateData() {
-    console.log('updating data...');
-    dayli.update();
 }
 
 function displayData(data) {
@@ -81,7 +72,7 @@ function displayData(data) {
 $(document).ready(function() {
     var date = getDate();
     dayli = new Dayli(date.year, date.date);
-    updateData();
+    dayli.update();
     
     $('.card').click(function(ev) {
         var goal = $(ev.target).closest('.card').attr('id');
