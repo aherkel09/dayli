@@ -1,2 +1,2 @@
 # dayli
-tracker for daily goals
+track your goals with dayli
