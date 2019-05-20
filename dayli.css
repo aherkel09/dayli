@@ -87,6 +87,7 @@ button:hover {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 50%);
 	grid-auto-rows: 1fr;
+	justify-content: center;
 }
 
 .loader {
