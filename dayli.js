@@ -1,3 +1,8 @@
+function setDateText() {
+    var date = new Date();
+    $('#date').text(date.toDateString());
+}
+
 function createDate(docRef) {
     docRef.set({
         complete: false,
@@ -9,16 +14,10 @@ function createDate(docRef) {
 }
 
 function checkDate() {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = String(date.getFullYear());
-    var monthAndDay = month + '-' + day;
-    $('#date').text(date.toDateString());
-    
-    var ref = firebase.firestore().collection(year).doc(monthAndDay);
+    var ref = getRef();
     ref.get().then(function(doc) {
         if (doc.exists) {
+            console.log(doc.data());
             updateGoalsFromDB(doc.data());
         } else {
             createDate(ref);
@@ -26,6 +25,15 @@ function checkDate() {
     }).catch(function(error) {
         console.log(error);
     });
+}
+
+function getRef() {
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = String(date.getFullYear());
+    var monthAndDay = month + '-' + day;
+    return firebase.firestore().collection(year).doc(monthAndDay);
 }
 
 function updateGoalsFromDB(data) {
@@ -45,10 +53,18 @@ function updateGoalsFromDB(data) {
 
 function markDone(ev) {
     var goal = $(ev.target).closest('.card').attr('id');
-    console.log('Marking ' + goal + ' done...');
+    var ref = getRef();
+    ref.update({
+        goal: true,
+    }).then(function() {
+        checkDate();
+    }).catch(function(error) {
+        console.log(error);
+    });
 }
 
 $(document).ready(function() {
+    setDateText();
     checkDate();
     $('.card').click(function(ev) {
         markDone(ev);
