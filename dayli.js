@@ -1,9 +1,16 @@
-function displayDate() {
+function setDate() {
     var date = new Date();
-    $('#date').text(date.toDateString()).fadeIn('slow');
+    $('#date').text(date.toDateString());
+}
+
+function markDone(ev) {
+    $(ev.target).fadeOut('slow');
 }
 
 $(document).ready(function() {
-    displayDate();
+    setDate();
+    $('.card').click(function(ev) {
+        markDone(ev);
+    });
     $('#content').fadeIn('slow');
 });
