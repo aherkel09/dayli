@@ -1,13 +1,8 @@
-function setDate() {
-    var date = new Date();
-    $('#date').text(date.toDateString());
-}
-
-function createDate(year, date) {
-    firebase.firestore().collection(year).doc(date).set({
+function createDate(docRef) {
+    docRef.set({
         complete: false,
-    }).then(function(doc) {
-        updateGoals(doc, create=true);
+        meditation: false,
+        composition: false,
     }).catch(function(error) {
         console.log(error);
     });
@@ -19,41 +14,44 @@ function checkDate() {
     var month = date.getMonth() + 1;
     var year = String(date.getFullYear());
     var monthAndDay = month + '-' + day;
+    $('#date').text(date.toDateString());
     
-    firebase.firestore().collection(year).doc(monthAndDay).get().then(function(doc) {
+    var ref = firebase.firestore().collection(year).doc(monthAndDay);
+    ref.get().then(function(doc) {
         if (doc.exists) {
-            updateGoals(doc);
+            updateGoalsFromDB();(doc.data());
         } else {
-            createDate(year, monthAndDay);
+            createDate(ref);
         }
     }).catch(function(error) {
         console.log(error);
     });
 }
 
-function updateGoals(doc, create=false) {
+function updateGoalsFromDB(data) {
     var complete = true;
-    var goals = ['meditation', 'composition'];
-    
-    for (var g in goals) {
-        if (create) {
-            doc.set({g: false});
-        } else if (doc.data()[g] == true) {
-            $('#' + g).fadeOut('slow');
-        } else {
+    for (var d in data) {
+        if (data[d] == true) {
+            $('#' + d).fadeOut('slow');
+        } else if (data[d] == false) {
             complete = false;
         }
     }
     
     if (complete) {
-        console.log('Done for the day!');
+        alert('Done for the day!');
     }
 }
 
+function markDone(ev) {
+    var goal = $(ev.target).closest('.card').attr('id');
+    console.log('Marking ' + goal + ' done...');
+}
+
 $(document).ready(function() {
-    setDate();
+    checkDate();
     $('.card').click(function(ev) {
-        checkDate();
+        markDone(ev);
     });
     $('#content').fadeIn('slow');
 });
