@@ -28,6 +28,7 @@ class Dayli {
     update() {
         var data = this.getDoc();
         if (data) {
+            console.log('found data.');
             displayData(data);
         } else {
             this.createDoc();
@@ -38,6 +39,7 @@ class Dayli {
         var data = {};
         data[goal] = true;
         this.docRef.update(data).then(function() {
+            console.log('marked done.');
             return true;
         }).catch(function(error) {
             console.log(error);
