@@ -37,6 +37,7 @@ function createCalendar(date, complete) {
         'margin': 'auto',
         'background-color': 'transparent',
         'color': 'var(--greyscale)',
+        'box-shadow': 'none',
     });
     
     calendar.onMonthChange(function(event, date) {
