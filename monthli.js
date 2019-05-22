@@ -28,13 +28,14 @@ class Monthli {
 }
 
 function createCalendar(date, complete) {
-    calendar = jsCalendar.new('#calendar', date).select(complete);
+    calendar = jsCalendar.new('#calendar', date);
     $('.jsCalendar > table')
         .css('margin', 'auto')
         .css('background-color', 'transparent')
         .css('color', 'var(--greyscale)');
     $('.jsCalendar-current')
         .css('background-color', 'var(--accent)');
+    calendar.select(complete);
 }
 
 $(document).ready(function() {
