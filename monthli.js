@@ -22,9 +22,14 @@ class Monthli {
 }
 
 $(document).ready(function() {
-    var year = String(new Date().getFullYear());
+    var date = new Date();
+    var year = String(date.getFullYear());
+    
     monthli = new Monthli(year);
     monthli.getComplete();
     monthli.listen();
+    
+    var element = document.getElementById('calendar');
+    calendar = jsCalendar.new(element, date);
 });
     
