@@ -21,6 +21,16 @@ class Monthli {
     }    
 }
 
+function createCalendar(date) {
+    calendar = jsCalendar.new('#calendar', date);
+    $('.jscalendar table')
+        .css('margin', 'auto')
+        .css('background-color', 'transparent')
+        .css('color', 'var(--greyscale)');
+    $('.jsCalendar-current')
+        .css('background-color', 'var(--accent)');
+}
+
 $(document).ready(function() {
     var date = new Date();
     var year = String(date.getFullYear());
@@ -29,7 +39,6 @@ $(document).ready(function() {
     monthli.getComplete();
     monthli.listen();
     
-    var element = document.getElementById('calendar');
-    calendar = jsCalendar.new(element, date);
+    createCalendar(date);
 });
     
