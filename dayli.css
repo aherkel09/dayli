@@ -152,20 +152,6 @@ button:hover {
 
 
 
-/* jsCalendar */
-
-.jsCalendar table {
-	margin: auto;
-	background-color: transparent;
-	color: var(--greyscale);
-}
-
-.jsCalendar-current {
-	background-color: var(--accent);
-}
-
-
-
 /* Media Queries */
 
 /* Extra small devices (phones, 600px and down) */
