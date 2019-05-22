@@ -9,7 +9,7 @@ class Dayli {
         var _this = this;
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
-                displayData(doc.data());
+                completeGoals(_this.checkComplete(doc.data()));
             } else {
                 _this.createDoc();
             }
@@ -39,10 +39,32 @@ class Dayli {
         });
     }
     
+    checkComplete(data) {
+        var complete = [];
+        for (var d in data) {
+            if (data[d] == true && d != 'complete') {
+                complete.push(d);
+            }
+        }
+        
+        console.log('data length: ' + data.length);
+        console.log('complete length: ' + complete.length);
+        
+        // if all goal entries except 'complete' == true, mark day complete.
+        if (complete.length == data.length - 1) {
+            this.complete();
+        }
+        
+        return complete;
+    }
+    
     complete() {
-        this.docRef.update({complete: true}).catch(function(error) {
+        this.docRef.update({
+            complete: true,
+        }).catch(function(error) {
             console.log(error);
         });
+        completeDay();
     }
 }
 
@@ -57,21 +79,16 @@ function getDate() {
     };
 }
 
-function displayData(data) {
-    var complete = true;
-    for (var d in data) {
-        if (data[d] == true) {
-            $('#' + d).fadeOut('slow');
-        } else if (d != 'complete' && data[d] == false) {
-            complete = false;
-        }
+function completeGoals(goalArray) {
+    for (var g in goalArray) {
+        $('#' + g).fadeOut('slow');
     }
-    if (complete) {
-        $('#content').fadeOut('slow', function() {
-            $('#complete').fadeIn('slow');
-        });
-        dayli.complete();
-    }
+}
+
+function completeDay() {
+    $('#content').fadeOut('slow', function() {
+        $('#complete').fadeIn('slow');
+    });
 }
 
 $(document).ready(function() {
