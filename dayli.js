@@ -47,9 +47,6 @@ class Dayli {
             }
         }
         
-        console.log('data length: ' + Object.keys(data).length);
-        console.log('complete length: ' + complete.length);
-        
         // if all goal entries except 'complete' == true, mark day complete.
         if (complete.length == Object.keys(data).length - 1) {
             this.complete();
@@ -80,6 +77,7 @@ function getDate() {
 }
 
 function completeGoals(goalArray) {
+    console.log(goalArray);
     for (var g in goalArray) {
         $('#' + g).fadeOut('slow');
     }
