@@ -32,16 +32,29 @@ class Monthli {
 function createCalendar(date, complete) {
     console.log(complete);
     calendar = jsCalendar.new('#calendar', date);
+    
+    $('.jsCalendar > table').css({
+        'margin': 'auto'
+        'background-color': 'transparent',
+        'color': 'var(--greyscale)',
+    });
+    
+    calendar.onMonthChange(function(event, date) {
+        styleSelected();
+    });
     calendar.select(complete);
-    $('.jsCalendar > table')
-        .css('margin', 'auto')
-        .css('background-color', 'transparent')
-        .css('color', 'var(--greyscale)');
-    $('.jsCalendar-current')
-        .css('background-color', 'var(--accent)');
-    $('.jsCalendar-selected')
-        .css('background-color', 'var(--brand)')
-        .css('border', 'none');
+    styleSelected();
+}
+
+function styleSelected() {
+    $('.jsCalendar > td')
+        .not('.jsCalendar-current, .jsCalendar-selected')
+        .css('background-color', '');
+    $('.jsCalendar-current').css('background-color', 'var(--accent)');
+    $('.jsCalendar-selected').css({
+        'background-color': 'var(--brand)',
+        'border', 'none',
+    });
 }
 
 $(document).ready(function() {
