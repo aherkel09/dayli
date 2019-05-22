@@ -41,7 +41,7 @@ function createCalendar(date, complete) {
 
 $(document).ready(function() {
     var date = new Date();
-    var day = month.getDate();
+    var day = date.getDate();
     var month = date.getMonth();
     var year = String(date.getFullYear());
     
