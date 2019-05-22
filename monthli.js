@@ -15,5 +15,5 @@ $(document).ready(function() {
     var year = new Date().getFullYear();
     monthli = new Monthli(year);
     var complete = monthli.getComplete();
-}
+});
     
