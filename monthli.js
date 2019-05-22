@@ -5,15 +5,26 @@ class Monthli {
     }
     
     getComplete() {
-        var complete = this.docRef.where('complete', '==', true);
-        console.log(complete);
-        return complete;
+        this.docRef.where('complete', '==', true).get().then(function(snapshot) {
+            snapshot.forEach(function(doc) {
+                console.log(doc.id);
+            });
+        });
     }
+    
+    listen() {
+        this.docRef.where('complete', '==', true).onSnapshot(function(snapshot) {
+            snapshot.docChanges().forEach(function(change) {
+                console.log(change.doc.data());
+            });
+        });
+    }    
 }
 
 $(document).ready(function() {
     var year = String(new Date().getFullYear());
     monthli = new Monthli(year);
-    var complete = monthli.getComplete();
+    monthli.getComplete();
+    monthli.listen();
 });
     
