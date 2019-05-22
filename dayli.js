@@ -77,9 +77,8 @@ function getDate() {
 }
 
 function completeGoals(goalArray) {
-    console.log(goalArray);
     for (var g in goalArray) {
-        $('#' + g).fadeOut('slow');
+        $('#' + goalArray[g]).fadeOut('slow');
     }
 }
 
