@@ -16,6 +16,7 @@ class Monthli {
     
     getComplete() {
         var date = this.day + '-' + this.month + '-' + this.year;
+        var year = this.year;
         var complete = [];
         this.docRef.where('complete', '==', true).get().then(function(snapshot) {
             snapshot.forEach(function(doc) {
