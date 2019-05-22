@@ -1,5 +1,7 @@
 class Monthli {
-    constructor(year) {
+    constructor(day, month, year) {
+        this.day = day;
+        this.month = month;
         this.year = year;
         this.docRef = firebase.firestore().collection(this.year);
     }
@@ -13,16 +15,15 @@ class Monthli {
     } 
     
     getComplete() {
-        var year = this.year
+        var date = this.day + '-' + this.month + '-' + this.year;
         var complete = [];
         this.docRef.where('complete', '==', true).get().then(function(snapshot) {
             snapshot.forEach(function(doc) {
-                var date = doc.id.split('-');
-                // format date to mm-dd-yyyy & push to array
-                complete.push(date[1] + '-' + date[0] + '-' + year);
+                var dateComplete = doc.id.split('-');
+                // format completed date to mm-dd-yyyy & push to array
+                complete.push(dateComplete[1] + '-' + dateComplete[0] + '-' + year);
             });
-            console.log(complete);
-            return complete;
+            createCalendar(date, complete);
         });
     }
 }
@@ -40,12 +41,12 @@ function createCalendar(date, complete) {
 
 $(document).ready(function() {
     var date = new Date();
+    var day = month.getDate();
+    var month = date.getMonth();
     var year = String(date.getFullYear());
     
-    monthli = new Monthli(year);
+    monthli = new Monthli(day, month, year);
     monthli.listen();
-    var complete = monthli.getComplete();
-    console.log(complete);
-    createCalendar(date, complete);
+    monthli.getComplete();
 });
     
