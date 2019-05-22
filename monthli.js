@@ -12,7 +12,7 @@ class Monthli {
 }
 
 $(document).ready(function() {
-    var year = new Date().getFullYear();
+    var year = String(new Date().getFullYear());
     monthli = new Monthli(year);
     var complete = monthli.getComplete();
 });
