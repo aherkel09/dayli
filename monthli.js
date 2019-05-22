@@ -39,6 +39,9 @@ function createCalendar(date, complete) {
         .css('color', 'var(--greyscale)');
     $('.jsCalendar-current')
         .css('background-color', 'var(--accent)');
+    $('jsCalendar-selected')
+        .css('background-color', 'var(--brand)')
+        .css('border', 'none');
 }
 
 $(document).ready(function() {
