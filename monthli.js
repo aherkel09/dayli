@@ -19,9 +19,9 @@ class Monthli {
                 var date = doc.id.split('-');
                 // format date to mm-dd & push to array
                 complete.push(date[1] + '-' + date[0]);
-            }).then(function() {
-                return complete;
             });
+            console.log(complete);
+            return complete;
         });
     }
 }
