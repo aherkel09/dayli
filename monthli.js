@@ -47,8 +47,7 @@ function createCalendar(date, complete) {
 }
 
 function styleSelected() {
-    $('.jsCalendar > td')
-        .not('.jsCalendar-current, .jsCalendar-selected')
+    $('td').not('.jsCalendar-current, .jsCalendar-selected')
         .css('background-color', '');
     $('.jsCalendar-current').css('background-color', 'var(--accent)');
     $('.jsCalendar-selected').css({
