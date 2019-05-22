@@ -4,25 +4,29 @@ class Monthli {
         this.docRef = firebase.firestore().collection(this.year);
     }
     
-    getComplete() {
-        this.docRef.where('complete', '==', true).get().then(function(snapshot) {
-            snapshot.forEach(function(doc) {
-                console.log(doc.id);
-            });
-        });
-    }
-    
     listen() {
         this.docRef.where('complete', '==', true).onSnapshot(function(snapshot) {
             snapshot.docChanges().forEach(function(change) {
                 console.log(change.doc.data());
             });
         });
-    }    
+    } 
+    
+    getComplete() {
+        var complete = [];
+        this.docRef.where('complete', '==', true).get().then(function(snapshot) {
+            snapshot.forEach(function(doc) {
+                var date = doc.id.split('-');
+                // format date to mm-dd & push to array
+                complete.push(date[1] + '-' + date[0]);
+            });
+        });
+        return complete;
+    }
 }
 
-function createCalendar(date) {
-    calendar = jsCalendar.new('#calendar', date);
+function createCalendar(date, complete) {
+    calendar = jsCalendar.new('#calendar', date).select(complete);
     $('.jsCalendar > table')
         .css('margin', 'auto')
         .css('background-color', 'transparent')
@@ -36,9 +40,9 @@ $(document).ready(function() {
     var year = String(date.getFullYear());
     
     monthli = new Monthli(year);
-    monthli.getComplete();
     monthli.listen();
+    var complete = monthli.getComplete();
     
-    createCalendar(date);
+    createCalendar(date, complete);
 });
     
