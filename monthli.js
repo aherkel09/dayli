@@ -30,7 +30,6 @@ class Monthli {
 }
 
 function createCalendar(date, complete) {
-    console.log(complete);
     calendar = jsCalendar.new('#calendar', date);
     
     $('.jsCalendar > table').css({
