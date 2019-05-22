@@ -14,10 +14,16 @@
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="dayli.css">
     
-    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
+    
+    <!-- jsCalendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.css" 
+          integrity="sha384-44GnAqZy9yUojzFPjdcUpP822DGm1ebORKY8pe6TkHuqJ038FANyfBYBpRvw8O9w" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.js" 
+            integrity="sha384-0LaRLH/U5g8eCAwewLGQRyC/O+g0kXh8P+5pWpzijxwYczD3nKETIqUyhuA8B/UB" crossorigin="anonymous">
     </script>
   </head>
   <body>
@@ -28,15 +34,17 @@
     
     <div class="hidden" id="content">
       <p id="instructions">click on a goal to mark it complete.</p>
+      
       <div class="content-grid">
         <div class="card" id="meditation">
           <h3>meditation</h3>
         </div>
-        
         <div class="card" id="composition">
           <h3>composition</h3>
         </div>
       </div>
+      
+      <div class="auto-jsCalendar"></div>
     </div>
     
     <p class="hidden" id="complete">done for the day.</p>
