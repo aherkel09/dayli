@@ -47,11 +47,11 @@ class Dayli {
             }
         }
         
-        console.log('data length: ' + data.length);
+        console.log('data length: ' + Object.keys(data).length);
         console.log('complete length: ' + complete.length);
         
         // if all goal entries except 'complete' == true, mark day complete.
-        if (complete.length == data.length - 1) {
+        if (complete.length == Object.keys(data).length; - 1) {
             this.complete();
         }
         
