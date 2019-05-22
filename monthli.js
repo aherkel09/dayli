@@ -13,12 +13,13 @@ class Monthli {
     } 
     
     getComplete() {
+        var year = this.year
         var complete = [];
         this.docRef.where('complete', '==', true).get().then(function(snapshot) {
             snapshot.forEach(function(doc) {
                 var date = doc.id.split('-');
-                // format date to mm-dd & push to array
-                complete.push(date[1] + '-' + date[0]);
+                // format date to mm-dd-yyyy & push to array
+                complete.push(date[1] + '-' + date[0] + '-' + year);
             });
             console.log(complete);
             return complete;
