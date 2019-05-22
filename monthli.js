@@ -34,7 +34,7 @@ function createCalendar(date, complete) {
     calendar = jsCalendar.new('#calendar', date);
     
     $('.jsCalendar > table').css({
-        'margin': 'auto'
+        'margin': 'auto',
         'background-color': 'transparent',
         'color': 'var(--greyscale)',
     });
@@ -53,7 +53,7 @@ function styleSelected() {
     $('.jsCalendar-current').css('background-color', 'var(--accent)');
     $('.jsCalendar-selected').css({
         'background-color': 'var(--brand)',
-        'border', 'none',
+        'border': 'none',
     });
 }
 
