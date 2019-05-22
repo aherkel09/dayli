@@ -45,7 +45,7 @@ $(document).ready(function() {
     monthli = new Monthli(year);
     monthli.listen();
     var complete = monthli.getComplete();
-    
+    console.log(complete);
     createCalendar(date, complete);
 });
     
