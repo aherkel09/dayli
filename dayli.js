@@ -5,6 +5,19 @@ class Dayli {
         this.docRef = firebase.firestore().collection(this.year).doc(this.date);
     }
     
+    init() {
+        this.addClick();
+        this.getDoc();
+    }
+    
+    addClick() {
+        var _this = this;
+        $('.card').click(function(ev) {
+            var goal = $(ev.target).closest('.card').attr('id');
+            _this.markDone(goal);
+        });
+    }
+    
     getDoc() {
         var _this = this;
         this.docRef.get().then(function(doc) {
@@ -91,12 +104,7 @@ function completeDay() {
 $(document).ready(function() {
     var date = getDate();
     dayli = new Dayli(date.year, date.date);
-    dayli.getDoc();
-    
-    $('.card').click(function(ev) {
-        var goal = $(ev.target).closest('.card').attr('id');
-        dayli.markDone(goal);
-    });
+    dayli.init();
     
     $('#header').fadeIn('slow');
     $('#content').fadeIn('slow');
