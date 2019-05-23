@@ -12,6 +12,7 @@ class Dayli {
     
     addClick() {
         var _this = this;
+        $('.card').off('click');
         $('.card').click(function(ev) {
             var goal = $(ev.target).closest('.card').attr('id');
             _this.markDone(goal);
