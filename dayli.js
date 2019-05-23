@@ -122,7 +122,7 @@ function completeDay(year, date) {
 
 $(document).ready(function() {
     var date = getDate(new Date());
-    dayli = new Dayli(date.year, date.date);
+    var dayli = new Dayli(date.year, date.date);
     dayli.init();
     
     $('#header').fadeIn('slow');
