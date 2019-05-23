@@ -22,7 +22,14 @@ class Dayli {
         var _this = this;
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
-                completeGoals(_this.checkComplete(doc.data()));
+                var data = doc.data();
+                var complete = _this.checkComplete(data);
+                
+                if (complete.length == Object.keys(data).length - 1) {
+                    this.complete();
+                } else {
+                    displayGoals(data, complete);
+                }
             } else {
                 _this.createDoc();
             }
@@ -58,13 +65,7 @@ class Dayli {
             if (data[d] == true && d != 'complete') {
                 complete.push(d);
             }
-        }
-        
-        // if all goal entries except 'complete' == true, mark day complete.
-        if (complete.length == Object.keys(data).length - 1) {
-            this.complete();
-        }
-        
+        }        
         return complete;
     }
     
@@ -89,9 +90,16 @@ function getDate() {
     };
 }
 
-function completeGoals(goalArray) {
-    for (var g in goalArray) {
-        $('#' + goalArray[g]).fadeOut('slow');
+function displayGoals(data, goalArray) {
+    $('#complete').fadeOut('slow', function() {
+        ('#content').fadeIn('slow');
+    });
+    for (var d in data) {
+        if (goalArray.includes(d)) { 
+            $('#' + d).fadeOut('slow');
+        } else {
+            $('#' + d).fadeIn('slow');
+        }
     }
 }
 
