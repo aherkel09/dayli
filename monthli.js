@@ -52,9 +52,8 @@ function createCalendar(today, complete) {
 }
 
 function showDay(date) {
-    var year = String(date.getFullYear());
-    var monthAndDay = String(date.getMonth() + 1) + '-' + String(date.getDate());
-    dayli = new Dayli(year, monthAndDay);
+    var dateObj = getDate(date);
+    dayli = new Dayli(dateObj.year, dateObj.date);
     dayli.init();
 }
 
