@@ -96,7 +96,7 @@ function displayGoals(data, goalArray) {
     for (var d in data) {
         if (goalArray.includes(d)) { 
             $('#' + d).fadeOut('slow');
-        } else {
+        } else if (d != 'complete') {
             $('#' + d).fadeIn('slow');
         }
     }
