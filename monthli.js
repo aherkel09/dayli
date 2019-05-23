@@ -39,7 +39,7 @@ function createCalendar(today, complete) {
         'box-shadow': 'none',
     });
     
-    calendar.onDateChange(function(event, date) {
+    calendar.onDateClick(function(event, date) {
         if (date.toString() != new Date().toString()) {
             showDay(date);
         }
