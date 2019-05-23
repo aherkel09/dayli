@@ -29,8 +29,8 @@ class Monthli {
     }
 }
 
-function createCalendar(date, complete) {
-    calendar = jsCalendar.new('#calendar', date);
+function createCalendar(today, complete) {
+    calendar = jsCalendar.new('#calendar', today);
     
     $('.jsCalendar > table').css({
         'margin': 'auto',
@@ -39,11 +39,23 @@ function createCalendar(date, complete) {
         'box-shadow': 'none',
     });
     
+    calendar.onDateChange(function(event, date) {
+        if (date.toString() != new Date().toString()) {
+            showDay(date);
+        }
+    });
     calendar.onMonthChange(function(event, date) {
         styleSelected();
     });
     calendar.select(complete);
     styleSelected();
+}
+
+function showDay(date) {
+    var year = String(date.getFullYear());
+    var monthAndDay = String(date.getMonth() + 1) + '-' + String(date.getDate());
+    dayli = new Dayli(year, monthAndDay);
+    dayli.init();
 }
 
 function styleSelected() {
