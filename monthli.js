@@ -53,8 +53,8 @@ function createCalendar(today, complete) {
 
 function showDay(date) {
     var dateObj = getDate(date);
-    var dayli = new Dayli(dateObj.year, dateObj.date);
-    dayli.init();
+    var dayliPast = new Dayli(dateObj.year, dateObj.date);
+    dayliPast.init();
 }
 
 function styleSelected() {
