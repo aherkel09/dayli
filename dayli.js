@@ -26,7 +26,7 @@ class Dayli {
                 var complete = _this.checkComplete(data);
                 
                 if (complete.length == Object.keys(data).length - 1) {
-                    this.complete();
+                    _this.complete();
                 } else {
                     displayGoals(data, complete);
                 }
