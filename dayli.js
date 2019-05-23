@@ -76,7 +76,7 @@ class Dayli {
         }).catch(function(error) {
             console.log(error);
         });
-        completeDay();
+        completeDay(this.year, this.date);
     }
 }
 
@@ -109,10 +109,14 @@ function displayAll() {
         $('.card').fadeIn('slow');
     });
 
-function completeDay() {
+function completeDay(year, date) {
     $('#content').fadeOut('slow', function() {
         $('#complete').fadeIn('slow');
     });
+    var dayAndMonth = date.split('-');
+    var selectDate = split[1] + '-' + split[0] + '-' + year;
+    calendar.select(selectDate);
+    styleSelected();
 }
 
 $(document).ready(function() {
