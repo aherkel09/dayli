@@ -79,8 +79,7 @@ class Dayli {
     }
 }
 
-function getDate() {
-    var date = new Date();
+function getDate(date) {
     $('#date').text(date.toDateString());
     var year = String(date.getFullYear());
     var date = String(date.getMonth()+1) + '-' + String(date.getDate());
@@ -92,7 +91,7 @@ function getDate() {
 
 function displayGoals(data, goalArray) {
     $('#complete').fadeOut('slow', function() {
-        ('#content').fadeIn('slow');
+        $('#content').fadeIn('slow');
     });
     for (var d in data) {
         if (goalArray.includes(d)) { 
@@ -110,7 +109,7 @@ function completeDay() {
 }
 
 $(document).ready(function() {
-    var date = getDate();
+    var date = getDate(new Date());
     dayli = new Dayli(date.year, date.date);
     dayli.init();
     
