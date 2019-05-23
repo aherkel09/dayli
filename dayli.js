@@ -82,11 +82,13 @@ class Dayli {
 }
 
 function getDate(date) {
-    $('#date').fadeOut('slow', function() {
-        $('#date').text(date.toDateString()).fadeIn('slow');
-    });
+    var text = date.toDateString();
     var year = String(date.getFullYear());
     var date = String(date.getMonth()+1) + '-' + String(date.getDate());
+    
+    $('#date').fadeOut('slow', function() {
+        $('#date').text(text).fadeIn('slow');
+    });
     return {
         year: year,
         date: date,
