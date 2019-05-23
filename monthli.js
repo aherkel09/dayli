@@ -53,7 +53,7 @@ function createCalendar(today, complete) {
 
 function showDay(date) {
     var dateObj = getDate(date);
-    dayli = new Dayli(dateObj.year, dateObj.date);
+    var dayli = new Dayli(dateObj.year, dateObj.date);
     dayli.init();
 }
 
@@ -73,8 +73,7 @@ $(document).ready(function() {
     var month = date.getMonth() + 1;
     var year = String(date.getFullYear());
     
-    monthli = new Monthli(day, month, year);
+    var monthli = new Monthli(day, month, year);
     monthli.listen();
     monthli.getComplete();
 });
-    
