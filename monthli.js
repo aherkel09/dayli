@@ -74,6 +74,5 @@ $(document).ready(function() {
     var year = String(date.getFullYear());
     
     var monthli = new Monthli(day, month, year);
-    monthli.listen();
     monthli.getComplete();
 });
