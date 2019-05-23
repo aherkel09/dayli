@@ -32,6 +32,7 @@ class Dayli {
                 }
             } else {
                 _this.createDoc();
+                displayAll();
             }
         }).catch(function(error) {
             console.log(error);
@@ -101,6 +102,12 @@ function displayGoals(data, goalArray) {
         }
     }
 }
+
+function displayAll() {
+    $('#complete').fadeOut('slow', function() {
+        $('#content').fadeIn('slow');
+        $('.card').fadeIn('slow');
+    });
 
 function completeDay() {
     $('#content').fadeOut('slow', function() {
