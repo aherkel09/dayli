@@ -108,13 +108,14 @@ function displayAll() {
         $('#content').fadeIn('slow');
         $('.card').fadeIn('slow');
     });
+}
 
 function completeDay(year, date) {
     $('#content').fadeOut('slow', function() {
         $('#complete').fadeIn('slow');
     });
     var dayAndMonth = date.split('-');
-    var selectDate = split[1] + '-' + split[0] + '-' + year;
+    var selectDate = dayAndMonth[1] + '-' + dayAndMonth[0] + '-' + year;
     calendar.select(selectDate);
     styleSelected();
 }
