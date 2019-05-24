@@ -52,8 +52,9 @@ function createCalendar(today, complete) {
     });
     
     calendar.onMonthChange(function(event, date) {
-        var thisMonth = today.split('-');
-        if (date.getMonth()+1 == thisMonth) {
+        var thisMonth = today.split('-')[1];
+        console.log(thisMonth + ' may or may not equal ' + String(date.getMonth()+1));
+        if (String(date.getMonth()+1) == thisMonth) {
             $('#' + today).css('color', 'var(--brand)');
         } else {
             $('#' + today).css('color', 'var(--greyscale)');
