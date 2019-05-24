@@ -41,12 +41,18 @@ function createCalendar(today, complete) {
     
     calendar.onDateClick(function(event, date) {
         if (date.toString() != new Date().toString()) {
+            console.log('showing day...');
             showDay(date);
+            $('.jsCalendar-current').removeClass('jsCalendar-current');
+            $(event.target).closest('td').addClass('jsCalendar-current');
+            styleSelected();
         }
     });
+    
     calendar.onMonthChange(function(event, date) {
         styleSelected();
     });
+    
     calendar.select(complete);
     styleSelected();
 }
