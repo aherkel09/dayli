@@ -49,7 +49,16 @@ function createCalendar(today, complete) {
     });
     
     calendar.onMonthChange(function(event, date) {
-        console.log(date);
+        var today = new Date()
+        if (date.getMonth() == today.getMonth()) {
+            $('td').forEach(function(d) {
+                if ($(d).text() == String(today.getDate())) {
+                    d.css('color', 'var(--brand)');
+                }
+            });
+        } else {
+            $('td').css('color', 'var(--greyscale)');
+        }
         styleSelected();
     });
 }
@@ -62,7 +71,7 @@ function showDay(date) {
 
 function styleSelected() {
     $('td').not('.jsCalendar-current, .jsCalendar-selected')
-        .css('background-color', '');
+        .css('background-color', 'transparent');
     $('.jsCalendar-current').css('background-color', 'var(--dark)');
     $('.jsCalendar-selected').css({
         'background-color': 'var(--accent)',
