@@ -37,7 +37,10 @@ function createCalendar(today, complete) {
         'color': 'var(--greyscale)',
         'box-shadow': 'none',
     });
-    $('.jsCalendar-current').css('color', 'var(--brand)');
+    $('.jsCalendar-current')
+        .attr('id', today)
+        .css('color', 'var(--brand)');
+    
     calendar.select(complete);
     styleSelected();
     
@@ -49,15 +52,11 @@ function createCalendar(today, complete) {
     });
     
     calendar.onMonthChange(function(event, date) {
-        var today = new Date()
-        if (date.getMonth() == today.getMonth()) {
-            $('td').each(function(d) {
-                if ($(d).text() == String(today.getDate())) {
-                    d.css('color', 'var(--brand)');
-                }
-            });
+        var thisMonth = today.split('-');
+        if (date.getMonth()+1 == thisMonth) {
+            $('#' + today).css('color', 'var(--brand)');
         } else {
-            $('td').css('color', 'var(--greyscale)');
+            $('#' + today).css('color', 'var(--greyscale)');
         }
         styleSelected();
     });
