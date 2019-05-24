@@ -150,10 +150,6 @@ button:hover {
 	background-color: rgb(116, 182, 181, 0.5);
 }
 
-.today {
-	border: 2px solid var(--greyscale);
-}
-
 
 
 /* Media Queries */
