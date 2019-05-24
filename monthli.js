@@ -30,37 +30,33 @@ class Monthli {
 }
 
 function createCalendar(today, complete) {
-    calendar = jsCalendar.new('#calendar', today);
-    
+    var calendar = jsCalendar.new('#calendar', today);
     $('.jsCalendar > table').css({
         'margin': 'auto',
         'background-color': 'transparent',
         'color': 'var(--greyscale)',
         'box-shadow': 'none',
     });
+    $('.jsCalendar-current').addClass('today');
+    calendar.select(complete);
+    styleSelected();
     
     calendar.onDateClick(function(event, date) {
-        if (date.toString() != new Date().toString()) {
-            console.log('showing day...');
-            showDay(date);
-            $('.jsCalendar-current').removeClass('jsCalendar-current');
-            $(event.target).closest('td').addClass('jsCalendar-current');
-            styleSelected();
-        }
+        $('.jsCalendar-current').removeClass('jsCalendar-current');
+        $(event.target).closest('td').addClass('jsCalendar-current');
+        showDay(date);
+        styleSelected();
     });
     
     calendar.onMonthChange(function(event, date) {
         styleSelected();
     });
-    
-    calendar.select(complete);
-    styleSelected();
 }
 
 function showDay(date) {
     var dateObj = getDate(date);
-    var dayliPast = new Dayli(dateObj.year, dateObj.date);
-    dayliPast.init();
+    var dayli = new Dayli(dateObj.year, dateObj.date);
+    dayli.init();
 }
 
 function styleSelected() {
