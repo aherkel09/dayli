@@ -49,6 +49,7 @@ function createCalendar(today, complete) {
     });
     
     calendar.onMonthChange(function(event, date) {
+        console.log(date);
         styleSelected();
     });
 }
