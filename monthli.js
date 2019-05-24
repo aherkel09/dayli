@@ -51,7 +51,7 @@ function createCalendar(today, complete) {
     calendar.onMonthChange(function(event, date) {
         var today = new Date()
         if (date.getMonth() == today.getMonth()) {
-            $('td').forEach(function(d) {
+            $('td').each(function(d) {
                 if ($(d).text() == String(today.getDate())) {
                     d.css('color', 'var(--brand)');
                 }
