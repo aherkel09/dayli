@@ -37,7 +37,7 @@ function createCalendar(today, complete) {
         'color': 'var(--greyscale)',
         'box-shadow': 'none',
     });
-    $('.jsCalendar-current').addClass('today');
+    $('.jsCalendar-current').css('color', 'var(--brand)');
     calendar.select(complete);
     styleSelected();
     
@@ -62,9 +62,9 @@ function showDay(date) {
 function styleSelected() {
     $('td').not('.jsCalendar-current, .jsCalendar-selected')
         .css('background-color', '');
-    $('.jsCalendar-current').css('background-color', 'var(--accent)');
+    $('.jsCalendar-current').css('background-color', 'var(--dark)');
     $('.jsCalendar-selected').css({
-        'background-color': 'var(--brand)',
+        'background-color': 'var(--accent)',
         'border': 'none',
     });
 }
