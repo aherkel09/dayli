@@ -30,7 +30,7 @@ class Monthli {
 }
 
 function createCalendar(today, complete) {
-    var calendar = jsCalendar.new('#calendar', today);
+    calendar = jsCalendar.new('#calendar', today);
     $('.jsCalendar > table').css({
         'margin': 'auto',
         'background-color': 'transparent',
