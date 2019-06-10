@@ -15,21 +15,21 @@ class Monthli {
     } 
     
     getComplete() {
+        var _this = this;
         var date = this.day + '-' + this.month + '-' + this.year;
-        var year = this.year;
         var complete = [];
         this.docRef.where('complete', '==', true).get().then(function(snapshot) {
             snapshot.forEach(function(doc) {
                 var dateComplete = doc.id.split('-');
                 // format completed date to mm-dd-yyyy & push to array
-                complete.push(dateComplete[1] + '-' + dateComplete[0] + '-' + year);
+                complete.push(dateComplete[1] + '-' + dateComplete[0] + '-' + _this.year);
             });
-            createCalendar(date, complete);
+            createCalendar(_this.uid, date, complete);
         });
     }
 }
 
-function createCalendar(today, complete) {
+function createCalendar(uid, today, complete) {
     calendar = jsCalendar.new('#calendar', today);
     $('.jsCalendar > table').css({
         'margin': 'auto',
@@ -47,7 +47,7 @@ function createCalendar(today, complete) {
     calendar.onDateClick(function(event, date) {
         $('.jsCalendar-current').removeClass('jsCalendar-current');
         $(event.target).closest('td').addClass('jsCalendar-current');
-        showDay(date);
+        showDay(uid, date);
         styleSelected();
     });
     
@@ -62,9 +62,9 @@ function createCalendar(today, complete) {
     });
 }
 
-function showDay(date) {
+function showDay(uid, date) {
     var dateObj = getDate(date);
-    var dayli = new Dayli(dateObj.year, dateObj.date);
+    var dayli = new Dayli(uid, dateObj.year, dateObj.date);
     dayli.init();
 }
 
