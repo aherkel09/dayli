@@ -4,6 +4,13 @@ class Auth {
         this.password = password;
     }
     
+    init() {
+        var _this = this;
+        $('#signout').click(function() {
+            _this.signOut();
+        });
+    }
+    
     googleSignIn() {
         var _this = this;
         var provider = new firebase.auth.GoogleAuthProvider();
@@ -21,7 +28,7 @@ class Auth {
         firebase.auth().signOut().then(function() {
             $('#content').remove();
             $('#calendar').remove();
-            $('#auth').fadeIn('slow');
+            $('#signout, #signin').fadeToggle('slow');
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
@@ -42,15 +49,8 @@ class Auth {
 
 function submitAuthRequest() {
     var auth = new Auth($('#email').val(), $('#password').val());
+    auth.init();
     auth.googleSignIn();
-}
-
-function signOut() {
-    firebase.auth().signOut().then(function() {
-        $('#signin, #signout').fadeToggle('slow');
-    }).catch(function(error) {
-        console.log(error);
-    });
 }
 
 function getDate(date) {
