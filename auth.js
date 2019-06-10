@@ -30,13 +30,11 @@ class Auth {
     getUserData(userId) {
         var date = getDate(new Date());
         
-        /*
         var dayli = new Dayli(userId, date.year, date.date);
         dayli.init();
         
         var monthli = new Monthli(userId, date.day, date.month, date.year);
         monthli.getComplete();
-        */
         
         $('#content').fadeIn('slow');
     }
