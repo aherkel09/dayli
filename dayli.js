@@ -13,7 +13,7 @@ class Dayli {
             if (doc.exists) { // make sure user has goals
                 _this.getDoc(doc.data()); // get today's data
             } else {
-                toggleGoalForm();
+                toggleGoalDisplay();
             }
         }).catch(function(error) {
             console.log(error);
@@ -57,13 +57,19 @@ class Dayli {
     }
     
     addGoal(goal) {
+        var _this = this;
         var data = {};
         data[goal] = goal;
-        this.goalsRef.update(data).then(function() {
-            $('#goal-input').val('');
-            $('#added').text('added ' + goal).fadeIn('slow', function() {
-                $('#added').fadeOut('slow');
-            });
+        this.goalsRef.get().then(function(doc) {
+            if (doc.exists) {
+                _this.goalsRef.update(data).then(function() {
+                    showAdded();
+                });
+            } else {
+                _this.goalsRef.set(data).then(function() {
+                    showAdded();
+                });
+            }
         }).catch(function(error) {
             console.log(error);
         });
@@ -130,14 +136,21 @@ class Dayli {
     }
 }
 
-function toggleGoalForm() {
-    $('#goal-form').fadeToggle('slow');
+function toggleGoalDisplay() {
+    $('#goal-container').fadeToggle('slow');
     var plusMinus = $('#goal-prompt').text().split(' ').splice(-1);
     if (plusMinus == '+') {
         $('#goal-prompt').text('add goals -');
     } else {
         $('#goal-prompt').text('add goals +');
     }
+}
+
+function showAdded() {
+    $('#goal-input').val('');
+    $('#added').text('added ' + goal).fadeIn('slow', function() {
+        $('#added').fadeOut('slow');
+    });
 }
 
 function completeDay(year, date) {
