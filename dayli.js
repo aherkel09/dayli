@@ -162,3 +162,10 @@ function completeDay(year, date) {
     dayliCalendar.select(selectDate); // global jsCalendar instance created in calendar.js
     styleSelected(); // defined in calendar.js
 }
+
+$(document).ready(function() {
+    $('#header').fadeIn('slow');
+    $('#goal-prompt').click(function() {
+        toggleGoalDisplay();
+    });
+});
