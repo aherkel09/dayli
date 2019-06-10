@@ -62,14 +62,9 @@ class Auth {
     }
 }
 
-function submitAuthRequest(requestType) {
+function submitAuthRequest() {
     var auth = new Auth($('#email').val(), $('#password').val());
-    
-    if (requestType == 'signup') {
-        auth.createUser();
-    } else if (requestType == 'login') {
-        auth.signIn();
-    }
+    auth.googleSignIn();
 }
 
 $(document).ready(function() {
