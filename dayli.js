@@ -56,7 +56,7 @@ class Dayli {
     }
     
     createDoc(goalObj) {
-        var data = {};
+        var data = {complete: false};
         for (var g in goalObj) {
             data[goalObj[g]] = false;
         }
