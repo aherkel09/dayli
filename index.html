@@ -33,7 +33,8 @@
     </header>
     
     <div class="hidden" id="auth">
-      <button type="button" onclick="submitAuthRequest()">sign in with google</button>
+      <button type="button" id="signin" onclick="submitAuthRequest()">sign in with google</button>
+      <button type="button" class="hidden" id="signout" onclick="signOut()">sign out</button>
     </div>
     
     <div class="hidden" id="content">
