@@ -24,7 +24,7 @@ class Calendar {
         calendar.onDateClick(function(event, dateClicked) {
             $('.jsCalendar-current').removeClass('jsCalendar-current');
             $(event.target).closest('td').addClass('jsCalendar-current');
-            showDay(dateClicked);
+            _this.showDay(dateClicked);
             _this.styleSelected();
         });
 
