@@ -10,10 +10,10 @@ class Dayli {
     init() {
         var _this = this;
         this.goalsRef.get().then(function(doc) {
-            if (doc.exists) {
+            if (doc.exists) { // make sure user has goals
                 var goals = doc.data();
                 _this.addClick();
-                _this.getDoc(goals);
+                _this.getDoc(goals); // get today's data
             } else {
                 $('#goal-form').fadeIn('slow');
                 $('#add-goal').click(function() {
@@ -38,16 +38,16 @@ class Dayli {
     getDoc(goals) {
         var _this = this;
         this.docRef.get().then(function(doc) {
-            if (doc.exists) {
+            if (doc.exists) { // check if doc for today exists
                 var data = doc.data();
                 var complete = _this.checkComplete(data);
                 
-                if (complete.length == Object.keys(data).length - 1) {
+                if (complete.length == Object.keys(data).length - 1) { // if all goals are marked complete
                     _this.complete();
                 } else {
                     displayGoals(data);
                 }
-            } else {
+            } else { // if no doc for today, create one
                 _this.createDoc(goals);
             }
         }).catch(function(error) {
@@ -115,7 +115,7 @@ function displayGoals(data) {
     $('#content').fadeOut('slow', function() {
         $('#goal-grid').empty();
         for (var d in data) {
-            if (d != 'complete') {
+            if (d != 'complete' && data[d] == false) { // create goal widget for all incomplete goals
                 createWidget(d);
             }
         }
