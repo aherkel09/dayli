@@ -110,7 +110,7 @@ button:hover {
 }
 
 .hidden, .content-container {
-	display: none	!important;
+	display: none;
 }
 
 .inline {
