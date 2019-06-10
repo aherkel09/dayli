@@ -1,3 +1,6 @@
+import { Dayli } from 'dayli.js'
+import { Monthli } from 'monthli.js'
+
 class Auth {
     constructor(email, password) {
         this.email = email;
@@ -28,17 +31,13 @@ class Auth {
     }
     
     getUserData(userId) {
-        console.log('getting data for ' + userId);
         var date = getDate(new Date());
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = String(date.getFullYear());
         
         /*
-        var dayli = new Dayli(date.year, date.date);
+        var dayli = new Dayli(userId, date.year, date.date);
         dayli.init();
         
-        var monthli = new Monthli(day, month, year);
+        var monthli = new Monthli(userId, date.day, date.month, date.year);
         monthli.getComplete();
         */
         
@@ -49,6 +48,24 @@ class Auth {
 function submitAuthRequest() {
     var auth = new Auth($('#email').val(), $('#password').val());
     auth.googleSignIn();
+}
+
+function getDate(date) {
+    var text = date.toDateString();
+    var year = String(date.getFullYear());
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var date = String(month) + '-' + String(day);
+    
+    $('#date').fadeOut('slow', function() {
+        $('#date').text(text).fadeIn('slow');
+    });
+    return {
+        year: year,
+        month: month,
+        day: day,
+        date: date,
+    };
 }
 
 $(document).ready(function() {
