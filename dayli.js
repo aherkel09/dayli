@@ -81,20 +81,6 @@ class Dayli {
     }
 }
 
-function getDate(date) {
-    var text = date.toDateString();
-    var year = String(date.getFullYear());
-    var date = String(date.getMonth()+1) + '-' + String(date.getDate());
-    
-    $('#date').fadeOut('slow', function() {
-        $('#date').text(text).fadeIn('slow');
-    });
-    return {
-        year: year,
-        date: date,
-    };
-}
-
 function displayGoals(data, goalArray) {
     $('#complete').fadeOut('slow', function() {
         $('#content').fadeIn('slow');
