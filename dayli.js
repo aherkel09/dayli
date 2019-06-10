@@ -70,7 +70,7 @@ class Dayli {
     addGoal(goal) {
         var data = {};
         data[goal] = goal;
-        _this.goalsRef.set(data).catch(function(error) {
+        this.goalsRef.set(data).catch(function(error) {
             console.log(error);
         });
     }
