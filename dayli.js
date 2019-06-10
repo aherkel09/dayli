@@ -1,8 +1,9 @@
-class Dayli {
-    constructor(year, date) {
+export class Dayli {
+    constructor(uid, year, date) {
+        this.uid = uid;
         this.year = year;
         this.date = date;
-        this.docRef = firebase.firestore().collection(this.year).doc(this.date);
+        this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
     init() {
