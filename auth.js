@@ -38,6 +38,6 @@ function submitAuthRequest(requestType) {
 
 $(document).ready(function() {
     $('#auth').fadeIn('slow');
-}
+});
     
     
