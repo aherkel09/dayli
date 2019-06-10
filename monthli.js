@@ -1,4 +1,4 @@
-export class Monthli {
+class Monthli {
     constructor(uid, day, month, year) {
         this.day = day;
         this.month = month;
