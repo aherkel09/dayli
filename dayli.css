@@ -99,18 +99,6 @@ button:hover {
 
 /* Content */
 
-#content {
-	padding: 1em 0.5em;
-}
-
-.content-grid {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, 50%);
-	grid-auto-rows: 1fr;
-	justify-content: center;
-}
-
 .loader {
 	border: 0.5em dotted var(--greyscale);
 	border-top: 0.5em dotted var(--brand);
@@ -125,6 +113,10 @@ button:hover {
 	display: none;
 }
 
+.inline {
+	display: inline-block;
+}
+
 .info {
 	font-size: 0.75em;
 	cursor: pointer;
@@ -134,14 +126,19 @@ button:hover {
 	text-align: right;
 }
 
+.content-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 50%);
+	grid-auto-rows: 1fr;
+	justify-content: center;
+}
+
 .card {
 	background-color: rgba(103, 96, 135, 0.75);
 	border: 0.25em solid var(--accent);
 	border-radius: 0.5em;
 	padding: 0.5em;
-}
-
-.card {
 	display: inline-block;
 	margin: 0.25em;
 }
@@ -153,6 +150,14 @@ button:hover {
 
 .goal:hover, #goal-prompt:hover {
 	cursor: pointer;
+}
+
+#title, #date {
+	margin: 0;
+}
+
+#content {
+	padding: 1em 0.5em;
 }
 
 
