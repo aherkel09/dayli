@@ -77,14 +77,3 @@ function styleSelected() {
         'border': 'none',
     });
 }
-
-$(document).ready(function() {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = String(date.getFullYear());
-    /*
-    var monthli = new Monthli(day, month, year);
-    monthli.getComplete();
-    */
-});
