@@ -174,3 +174,17 @@ button:hover {
 		grid-template-columns: repeat(auto-fit, 33%);
 	}
 }
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+	.content-grid {
+		grid-template-columns: repeat(auto-fit, 25%);
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+	.content-grid {
+		grid-template-columns: repeat(auto-fit, 20%);
+	}
+}
