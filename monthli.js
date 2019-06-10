@@ -24,56 +24,8 @@ class Monthli {
                 // format completed date to mm-dd-yyyy & push to array
                 complete.push(dateComplete[1] + '-' + dateComplete[0] + '-' + _this.year);
             });
-            createCalendar(_this.uid, date, complete);
+            var calendar = new Calendar(_this.uid, date, complete);
+            calendar.init();
         });
     }
-}
-
-function createCalendar(uid, today, complete) {
-    calendar = jsCalendar.new('#calendar', today);
-    $('.jsCalendar > table').css({
-        'margin': 'auto',
-        'background-color': 'transparent',
-        'color': 'var(--greyscale)',
-        'box-shadow': 'none',
-    });
-    $('.jsCalendar-current')
-        .attr('id', today)
-        .css('color', 'var(--brand)');
-    
-    calendar.select(complete);
-    styleSelected();
-    
-    calendar.onDateClick(function(event, date) {
-        $('.jsCalendar-current').removeClass('jsCalendar-current');
-        $(event.target).closest('td').addClass('jsCalendar-current');
-        showDay(uid, date);
-        styleSelected();
-    });
-    
-    calendar.onMonthChange(function(event, date) {
-        var thisMonth = today.split('-')[1];
-        if (String(date.getMonth()+1) == thisMonth) {
-            $('#' + today).css('color', 'var(--brand)');
-        } else {
-            $('#' + today).css('color', 'var(--greyscale)');
-        }
-        styleSelected();
-    });
-}
-
-function showDay(uid, date) {
-    var dateObj = getDate(date);
-    var dayli = new Dayli(uid, dateObj.year, dateObj.date);
-    dayli.init();
-}
-
-function styleSelected() {
-    $('td').not('.jsCalendar-current, .jsCalendar-selected')
-        .css('background-color', 'transparent');
-    $('.jsCalendar-current').css('background-color', 'var(--dark)');
-    $('.jsCalendar-selected').css({
-        'background-color': 'var(--accent)',
-        'border': 'none',
-    });
 }
