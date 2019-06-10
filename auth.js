@@ -44,7 +44,7 @@ class Auth {
         var monthli = new Monthli(userId, date.day, date.month, date.year);
         monthli.getComplete();
         
-        $('#content, #calendar').fadeIn('slow');
+        $('#goals, #content, #calendar').fadeIn('slow');
     }
 }
 
@@ -73,8 +73,7 @@ function getDate(date) {
 }
 
 $(document).ready(function() {
-    $('#header').fadeIn('slow');
-    $('#auth').fadeIn('slow');
+    $('#header, #auth').fadeIn('slow');
     $('#goal-prompt').click(function() {
         toggleGoalForm();
     });
