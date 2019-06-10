@@ -66,6 +66,9 @@ function getDate(date) {
 $(document).ready(function() {
     $('#header').fadeIn('slow');
     $('#auth').fadeIn('slow');
+    $('#goal-prompt').click(function() {
+        showGoalForm();
+    });
 });
     
     
