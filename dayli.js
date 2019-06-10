@@ -81,7 +81,7 @@ class Dayli {
     
     createWidget(goal) {
         $('#goal-grid').append(
-            '<div class="card" id="' + goal + '"><h3>' + goal + '</h3></div>'
+            '<div class="goal card" id="' + goal + '"><h3>' + goal + '</h3></div>'
         );
     }
 
