@@ -148,6 +148,11 @@ button:hover {
 
 .card:hover {
 	background-color: rgb(116, 182, 181, 0.5);
+	cursor: pointer;
+}
+
+.goal:hover, #goal-prompt:hover {
+	cursor: pointer;
 }
 
 
