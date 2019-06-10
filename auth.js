@@ -1,6 +1,3 @@
-import { Dayli } from 'dayli.js'
-import { Monthli } from 'monthli.js'
-
 class Auth {
     constructor(email, password) {
         this.email = email;
