@@ -135,7 +135,7 @@ function toggleGoalForm() {
     var plusMinus = $('#goal-prompt').text().split(' ')[-1];
     if (plusMinus == '+') {
         $('#goal-prompt').text('add goals -');
-    else {
+    } else {
         $('#goal-prompt').text('add goals +');
     }
 }
