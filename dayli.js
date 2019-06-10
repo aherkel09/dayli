@@ -1,4 +1,4 @@
-export class Dayli {
+class Dayli {
     constructor(uid, year, date) {
         this.uid = uid;
         this.year = year;
