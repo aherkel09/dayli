@@ -73,7 +73,7 @@ function getDate(date) {
 }
 
 $(document).ready(function() {
-    $('#header, #auth').fadeIn('slow');
+    $('#header').fadeIn('slow');
     $('#goal-prompt').click(function() {
         toggleGoalForm();
     });
