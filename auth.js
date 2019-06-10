@@ -5,13 +5,18 @@ class Auth {
     }
     
     createUser() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function(error) {
+        var _this = this;
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
+            _this.getUserData();
+        }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
     }
     
     signIn() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function() {
+            _this.getUserData();
+        }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
     }
@@ -23,6 +28,22 @@ class Auth {
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
+    }
+    
+    getUserData() {
+        console.log('getting data...');
+        var date = getDate(new Date());
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = String(date.getFullYear());
+        
+        var dayli = new Dayli(date.year, date.date);
+        dayli.init();
+        
+        var monthli = new Monthli(day, month, year);
+        monthli.getComplete();
+        
+        $('#content').fadeIn('slow');
     }
 }
 
@@ -37,6 +58,7 @@ function submitAuthRequest(requestType) {
 }
 
 $(document).ready(function() {
+    $('#header').fadeIn('slow');
     $('#auth').fadeIn('slow');
 });
     
