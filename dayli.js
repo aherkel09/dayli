@@ -13,10 +13,15 @@ class Dayli {
             if (doc.exists) { // make sure user has goals
                 _this.getDoc(doc.data()); // get today's data
             } else {
-                showGoalForm();
+                toggleGoalForm();
             }
         }).catch(function(error) {
             console.log(error);
+        });
+        
+        $('#add-goal').click(function() {
+            var goal = $('#goal-input').val();
+            _this.addGoal(goal);
         });
     }
     
@@ -125,18 +130,14 @@ class Dayli {
     }
 }
 
-function showGoalForm() {
-    $('#goal-form').fadeIn('slow');
-    
-    $('#add-goal').click(function() {
-        var goal = $('#goal-input').val();
-        _this.addGoal(goal);
-    });
-    
-    $('#goal-prompt').text('add goals -').click(function() {
-        $('#goal-form').fadeOut('slow');
+function toggleGoalForm() {
+    $('#goal-form').fadeToggle('slow');
+    var plusMinus = $('#goal-prompt').text().split(' ')[-1];
+    if (plusMinus == '+') {
+        $('#goal-prompt').text('add goals -');
+    else {
         $('#goal-prompt').text('add goals +');
-    });
+    }
 }
 
 function completeDay(year, date) {
