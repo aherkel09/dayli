@@ -21,13 +21,13 @@ class Calendar {
             .css('color', 'var(--brand)');
 
         dayliCalendar.select(_this.daysComplete);
-        _this.styleSelected();
+        styleSelected();
 
         dayliCalendar.onDateClick(function(event, dateClicked) {
             $('.jsCalendar-current').removeClass('jsCalendar-current');
             $(event.target).closest('td').addClass('jsCalendar-current');
             _this.showDay(dateClicked);
-            _this.styleSelected();
+            styleSelected();
         });
 
         dayliCalendar.onMonthChange(function(event, dateClicked) {
@@ -37,7 +37,7 @@ class Calendar {
             } else {
                 $('#' + _this.date).css('color', 'var(--greyscale)');
             }
-            _this.styleSelected();
+            styleSelected();
         });
     }
 
@@ -46,15 +46,15 @@ class Calendar {
         var dayli = new Dayli(this.uid, dateObj.year, dateObj.date);
         dayli.init();
     }
+}
 
-    styleSelected() {
-        $('td').not('.jsCalendar-current, .jsCalendar-selected')
-            .css('background-color', 'transparent');
-        $('.jsCalendar-current').css('background-color', 'var(--dark)');
-        $('.jsCalendar-selected').css({
-            'background-color': 'var(--accent)',
-            'border': 'none',
-        });
-    }
+function styleSelected() {
+    $('td').not('.jsCalendar-current, .jsCalendar-selected')
+        .css('background-color', 'transparent');
+    $('.jsCalendar-current').css('background-color', 'var(--dark)');
+    $('.jsCalendar-selected').css({
+        'background-color': 'var(--accent)',
+        'border': 'none',
+    });
 }
 
