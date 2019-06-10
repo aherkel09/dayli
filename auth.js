@@ -45,6 +45,14 @@ function submitAuthRequest() {
     auth.googleSignIn();
 }
 
+function signOut() {
+    firebase.auth().signOut().then(function() {
+        $('#signin, #signout').fadeToggle('slow');
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
 function getDate(date) {
     var text = date.toDateString();
     var year = String(date.getFullYear());
