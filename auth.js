@@ -71,12 +71,5 @@ function getDate(date) {
         date: date,
     };
 }
-
-$(document).ready(function() {
-    $('#header').fadeIn('slow');
-    $('#goal-prompt').click(function() {
-        toggleGoalForm();
-    });
-});
     
     
