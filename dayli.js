@@ -12,7 +12,6 @@ class Dayli {
         this.goalsRef.get().then(function(doc) {
             if (doc.exists) {
                 var goals = doc.data();
-                createWidgets(goals);
                 _this.addClick();
                 _this.getDoc(goals);
             } else {
@@ -46,11 +45,10 @@ class Dayli {
                 if (complete.length == Object.keys(data).length - 1) {
                     _this.complete();
                 } else {
-                    displayGoals(data, complete);
+                    displayGoals(data);
                 }
             } else {
                 _this.createDoc(goals);
-                displayAll();
             }
         }).catch(function(error) {
             console.log(error);
@@ -65,6 +63,7 @@ class Dayli {
         this.docRef.set(data).catch(function(error) {
             console.log(error);
         });
+        displayGoals(data);
     }
     
     addGoal(goal) {
@@ -80,7 +79,6 @@ class Dayli {
         });
     }
                 
-    
     markDone(goal) {
         var _this = this;
         var data = {};
@@ -110,33 +108,24 @@ class Dayli {
         });
         completeDay(this.year, this.date);
     }
-}
+}   
 
-function createWidgets(goalObj) {
-    for (var g in goalObj) {
-        $('#goal-grid').append('<div class="card" id="' + goalObj[g] + '"><h3>' + goalObj[g] + '</h3></div>');
-    }
-}
-        
-
-function displayGoals(data, goalArray) {
-    $('#complete').fadeOut('slow', function() {
-        $('#content').fadeIn('slow');
-    });
-    for (var d in data) {
-        if (goalArray.includes(d)) { 
-            $('#' + d).fadeOut('slow');
-        } else if (d != 'complete') {
-            $('#' + d).fadeIn('slow');
+function displayGoals(data) {
+    $('#complete').fadeOut('slow');
+    $('#content').fadeOut('slow', function() {
+        $('#goal-grid').empty();
+        for (var d in data) {
+            if (d != 'complete') {
+                createWidget(d);
+            }
         }
-    }
+        $('#content').fadeIn('slow');
+    });
 }
 
-function displayAll() {
-    $('#complete').fadeOut('slow', function() {
-        $('#content').fadeIn('slow');
-        $('.card').fadeIn('slow');
-    });
+function createWidget(goal) {
+    $('#goal-grid').append('<div class="hidden card" id="' + goal + '"><h3>' + goal + '</h3></div>');
+    $('#' + goal).fadeIn('slow');
 }
 
 function completeDay(year, date) {
