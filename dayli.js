@@ -59,7 +59,7 @@ class Dayli {
     addGoal(goal) {
         var data = {};
         data[goal] = goal;
-        this.goalsRef.set(data).then(function() {
+        this.goalsRef.update(data).then(function() {
             $('#goal-input').val('');
             $('#added').text('added ' + goal).fadeIn('slow', function() {
                 $('#added').fadeOut('slow');
