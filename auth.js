@@ -26,8 +26,9 @@ class Auth {
     
     signOut() {
         firebase.auth().signOut().then(function() {
-            $('#content').remove();
-            $('#calendar').remove();
+            $('#content, #calendar').fadeOut('slow', function() {
+                $('#content, #calendar').empty();
+            });
             $('#signout, #signin').fadeToggle('slow');
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
