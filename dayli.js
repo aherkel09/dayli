@@ -132,7 +132,7 @@ class Dayli {
 
 function toggleGoalForm() {
     $('#goal-form').fadeToggle('slow');
-    var plusMinus = $('#goal-prompt').text().split(' ')[-1];
+    var plusMinus = $('#goal-prompt').text().split(' ').splice(-1);
     if (plusMinus == '+') {
         $('#goal-prompt').text('add goals -');
     } else {
