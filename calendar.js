@@ -1,3 +1,5 @@
+var dayliCalendar;
+
 class Calendar {
     constructor(uid, date, daysComplete) {
         this.uid = uid;
@@ -7,7 +9,7 @@ class Calendar {
     
     init() {
         var _this = this;
-        var calendar = jsCalendar.new('#calendar', _this.date);
+        dayliCalendar = jsCalendar.new('#calendar', _this.date);
         $('.jsCalendar > table').css({
             'margin': 'auto',
             'background-color': 'transparent',
@@ -18,17 +20,17 @@ class Calendar {
             .attr('id', _this.date)
             .css('color', 'var(--brand)');
 
-        calendar.select(_this.daysComplete);
+        dayliCalendar.select(_this.daysComplete);
         _this.styleSelected();
 
-        calendar.onDateClick(function(event, dateClicked) {
+        dayliCalendar.onDateClick(function(event, dateClicked) {
             $('.jsCalendar-current').removeClass('jsCalendar-current');
             $(event.target).closest('td').addClass('jsCalendar-current');
             _this.showDay(dateClicked);
             _this.styleSelected();
         });
 
-        calendar.onMonthChange(function(event, dateClicked) {
+        dayliCalendar.onMonthChange(function(event, dateClicked) {
             var thisMonth = _this.date.split('-')[1];
             if (String(dateClicked.getMonth()+1) == thisMonth) {
                 $('#' + _this.date).css('color', 'var(--brand)');
