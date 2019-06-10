@@ -4,33 +4,14 @@ class Auth {
         this.password = password;
     }
     
-    createUser() {
-        var _this = this;
-        
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
-            _this.getUserData();
-        }).catch(function(error) {
-            $('#invalid-auth').text(error.message);
-        });
-    }
-    
-    signIn() {
-        var _this = this;
-        
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function() {
-            _this.getUserData();
-        }).catch(function(error) {
-            $('#invalid-auth').text(error.message);
-        });
-    }
-    
     googleSignIn() {
         var _this = this;
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
             var user = result.user;
-            getUserData();
+            $('#auth').fadeOut('slow');
+            this.getUserData(user.uid);
         }).catch(function(error) {
             console.log(error.message);
         });
@@ -40,23 +21,26 @@ class Auth {
         firebase.auth().signOut().then(function() {
             $('#content').remove();
             $('#calendar').remove();
+            $('#auth').fadeIn('slow');
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
     }
     
-    getUserData() {
-        console.log('getting data...');
+    getUserData(userId) {
+        console.log('getting data for ' + userId);
         var date = getDate(new Date());
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = String(date.getFullYear());
         
+        /*
         var dayli = new Dayli(date.year, date.date);
         dayli.init();
         
         var monthli = new Monthli(day, month, year);
         monthli.getComplete();
+        */
         
         $('#content').fadeIn('slow');
     }
