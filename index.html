@@ -31,20 +31,18 @@
     <header class="hidden" id="header">
       <h1 id="title">dayli</h1>
       
-      <div class="inline hidden" id="auth">
+      <div class="inline" id="auth">
         <button type="button" id="signin" onclick="submitAuthRequest()">sign in with google</button>
         <button type="button" class="hidden" id="signout">sign out</button>
       </div>
       
-      <div class="inline hidden" id="goals">
-        <p id="goal-prompt">add goals +</p>
-        <p id="invalid-auth"></p>
-        <p class="hidden" id="added"></p>
-        <form class="hidden" id="goal-form">
-          <input type="text" name="goal" id="goal-input" placeholder="enter goal"><br>
-          <button type="button" id="add-goal">add goal</button>
-        </form>
-      </div>
+      <p class="inline" id="goal-prompt">add goals +</p>
+      <p id="invalid-auth"></p>
+      <p class="hidden" id="added"></p>
+      <form class="hidden" id="goal-form">
+        <input type="text" name="goal" id="goal-input" placeholder="enter goal"><br>
+        <button type="button" id="add-goal">add goal</button>
+      </form>
     </header>
     
     <p id="date"></p>
