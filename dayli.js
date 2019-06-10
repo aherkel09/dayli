@@ -70,7 +70,12 @@ class Dayli {
     addGoal(goal) {
         var data = {};
         data[goal] = goal;
-        this.goalsRef.set(data).catch(function(error) {
+        this.goalsRef.set(data).then(function() {
+            $('#goal-input').val('');
+            $('#added').text('added ' + goal).fadeIn('slow', function() {
+                $('#added').fadeOut('slow');
+            });
+        }).catch(function(error) {
             console.log(error);
         });
     }
