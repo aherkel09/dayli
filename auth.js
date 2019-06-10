@@ -29,10 +29,10 @@ class Auth {
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
-          var token = result.credential.accessToken;
-          var user = result.user;
+            var user = result.user;
+            getUserData();
         }).catch(function(error) {
-          console.log(error.message);
+            console.log(error.message);
         });
     }
     
