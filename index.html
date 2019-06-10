@@ -33,12 +33,11 @@
     </header>
     
     <div class="hidden" id="auth">
-      <form class="card" id="auth-form">
-        <button type="button" onclick="submitAuthRequest()">sign in with google</button>
-      </form>
+      <button type="button" onclick="submitAuthRequest()">sign in with google</button>
     </div>
     
     <div class="hidden" id="content">
+      <p class="hidden" id="added"></p>
       <form class="hidden" id="goal-form">
         <input type="text" name="goal" id="goal-input" placeholder="enter goal"><br>
         <button type="button" id="add-goal">add goal</button>
