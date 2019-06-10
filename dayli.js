@@ -3,7 +3,7 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
-        this.goalsRef = firebase.firestore().collection(this.uid + '-' + this.year).doc('goals');
+        this.goalsRef = firebase.firestore().collection(this.uid).doc('goals');
         this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
@@ -16,7 +16,11 @@ class Dayli {
                 _this.addClick();
                 _this.getDoc(goals);
             } else {
-                console.log('no goals yet!');
+                $('#goal-form').fadeIn('slow');
+                $('#add-goal').click(function() {
+                    var goal = $('#goal-input').val();
+                    _this.addGoal(goal);
+                });
             }
         }).catch(function(error) {
             console.log(error);
@@ -62,6 +66,15 @@ class Dayli {
             console.log(error);
         });
     }
+    
+    addGoal(goal) {
+        var data = {};
+        data[goal] = goal;
+        _this.goalsRef.set(data).catch(function(error) {
+            console.log(error);
+        });
+    }
+                
     
     markDone(goal) {
         var _this = this;
