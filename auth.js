@@ -10,7 +10,7 @@ class Auth {
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
             var user = result.user;
-            $('#auth').fadeOut('slow');
+            $('#signin, #signout').fadeToggle('slow');
             _this.getUserData(user.uid);
         }).catch(function(error) {
             console.log(error.message);
