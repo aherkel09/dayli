@@ -25,8 +25,8 @@ class Monthli {
                 // format completed date to mm-dd-yyyy & push to array
                 complete.push(dateComplete[1] + '-' + dateComplete[0] + '-' + _this.year);
             });
-            var calendar = new Calendar(_this.uid, date, complete);
-            calendar.init();
+            dayliCalendar = new Calendar(_this.uid, date, complete); // global Calendar instance
+            dayliCalendar.init();
         });
     }
 }
