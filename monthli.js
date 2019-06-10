@@ -1,9 +1,9 @@
-class Monthli {
-    constructor(day, month, year) {
+export class Monthli {
+    constructor(uid, day, month, year) {
         this.day = day;
         this.month = month;
         this.year = year;
-        this.docRef = firebase.firestore().collection(this.year);
+        this.docRef = firebase.firestore().collection(this.uid + '-' + this.year);
     }
     
     listen() {
