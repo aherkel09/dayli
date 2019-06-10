@@ -128,8 +128,8 @@ function completeDay(year, date) {
 $(document).ready(function() {
     var date = getDate(new Date());
     var dayli = new Dayli(date.year, date.date);
+    /*
     dayli.init();
-    
     $('#header').fadeIn('slow');
-    $('#content').fadeIn('slow');
+    */
 });
