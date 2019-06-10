@@ -3,7 +3,7 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
-        this.goalsRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
+        this.goalsRef = firebase.firestore().collection(this.uid + '-' + this.year).doc('goals');
         this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
