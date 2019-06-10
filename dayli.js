@@ -3,12 +3,24 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
+        this.goalsRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
         this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
     init() {
-        this.addClick();
-        this.getDoc();
+        var _this = this;
+        this.goalsRef.get().then(function(doc) {
+            if (doc.exists) {
+                var goals = doc.data();
+                createWidgets(goals);
+                _this.addClick();
+                _this.getDoc(goals);
+            } else {
+                console.log('no goals yet!');
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
     
     addClick() {
@@ -20,7 +32,7 @@ class Dayli {
         });
     }
     
-    getDoc() {
+    getDoc(goals) {
         var _this = this;
         this.docRef.get().then(function(doc) {
             if (doc.exists) {
@@ -33,7 +45,7 @@ class Dayli {
                     displayGoals(data, complete);
                 }
             } else {
-                _this.createDoc();
+                _this.createDoc(goals);
                 displayAll();
             }
         }).catch(function(error) {
@@ -41,12 +53,12 @@ class Dayli {
         });
     }
     
-    createDoc() {
-        this.docRef.set({
-            meditation: false,
-            composition: false,
-            complete: false,
-        }).catch(function(error) {
+    createDoc(goalObj) {
+        var data = {};
+        for (var g in goalObj) {
+            data[goalObj[g]] = false;
+        }
+        this.docRef.set(data).catch(function(error) {
             console.log(error);
         });
     }
@@ -81,6 +93,13 @@ class Dayli {
         completeDay(this.year, this.date);
     }
 }
+
+function createWidgets(goalObj) {
+    for (var g in goalObj) {
+        $('#goal-grid').append('<div class="card" id="' + goalObj[g] + '"><h3>' + goalObj[g] + '</h3></div>');
+    }
+}
+        
 
 function displayGoals(data, goalArray) {
     $('#complete').fadeOut('slow', function() {
