@@ -6,6 +6,7 @@ class Auth {
     
     createUser() {
         var _this = this;
+        
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function() {
             _this.getUserData();
         }).catch(function(error) {
@@ -14,10 +15,24 @@ class Auth {
     }
     
     signIn() {
+        var _this = this;
+        
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function() {
             _this.getUserData();
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
+        });
+    }
+    
+    googleSignIn() {
+        var _this = this;
+        var provider = new firebase.auth.GoogleAuthProvider();
+        
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          var token = result.credential.accessToken;
+          var user = result.user;
+        }).catch(function(error) {
+          console.log(error.message);
         });
     }
     
