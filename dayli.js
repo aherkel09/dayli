@@ -108,6 +108,6 @@ function completeDay(year, date) {
     });
     var dayAndMonth = date.split('-');
     var selectDate = dayAndMonth[1] + '-' + dayAndMonth[0] + '-' + year;
-    dayliCalendar.select(selectDate); // global Calendar instance created in monthli.js
-    styleSelected();
+    dayliCalendar.select(selectDate); // global jsCalendar instance created in calendar.js
+    styleSelected(); // defined in calendar.js
 }
