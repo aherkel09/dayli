@@ -11,9 +11,7 @@ class Dayli {
         var _this = this;
         this.goalsRef.get().then(function(doc) {
             if (doc.exists) { // make sure user has goals
-                var goals = doc.data();
-                _this.addClick();
-                _this.getDoc(goals); // get today's data
+                _this.getDoc(doc.data()); // get today's data
             } else {
                 $('#goal-form').fadeIn('slow');
                 $('#add-goal').click(function() {
@@ -23,15 +21,6 @@ class Dayli {
             }
         }).catch(function(error) {
             console.log(error);
-        });
-    }
-    
-    addClick() {
-        var _this = this;
-        $('.card').off('click');
-        $('.card').click(function(ev) {
-            var goal = $(ev.target).closest('.card').attr('id');
-            _this.markDone(goal);
         });
     }
     
@@ -46,6 +35,7 @@ class Dayli {
                     _this.complete();
                 } else {
                     displayGoals(data);
+                    _this.addClick();
                 }
             } else { // if no doc for today, create one
                 _this.createDoc(goals);
@@ -64,6 +54,7 @@ class Dayli {
             console.log(error);
         });
         displayGoals(data);
+        _this.addClick();
     }
     
     addGoal(goal) {
@@ -76,6 +67,15 @@ class Dayli {
             });
         }).catch(function(error) {
             console.log(error);
+        });
+    }
+    
+    addClick() {
+        var _this = this;
+        $('.card').off('click');
+        $('.card').click(function(ev) {
+            var goal = $(ev.target).closest('.card').attr('id');
+            _this.markDone(goal);
         });
     }
                 
