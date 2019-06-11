@@ -137,9 +137,9 @@ function toggleGoalDisplay() {
     $('#goal-container').fadeToggle('slow');
     var plusMinus = $('#goal-prompt').text().split(' ').splice(-1);
     if (plusMinus == '+') {
-        $('#goal-prompt').text('add goals -');
+        $('#goal-prompt').text('add goals \u25be');
     } else {
-        $('#goal-prompt').text('add goals +');
+        $('#goal-prompt').text('add goals \u25b4');
     }
 }
 
