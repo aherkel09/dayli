@@ -66,7 +66,7 @@ class Dayli {
                 showAdded(goal);
             });
         } else {
-            _this.goalRef.set(data).then(function() {
+            this.goalRef.set(data).then(function() {
                 showAdded(goal);
             });
         }
