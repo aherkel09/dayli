@@ -50,7 +50,7 @@ class Dayli {
     createDoc() {
         var data = {complete: false};
         for (var g in this.goalData) {
-            data[goalObj[g]] = false;
+            data[this.goalData[g]] = false;
         }
         this.docRef.set(data).catch(function(error) {
             console.log(error);
