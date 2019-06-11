@@ -145,8 +145,8 @@ function toggleGoalDisplay() {
 
 function showAdded(goal) {
     $('#goal-input').val('');
-    $('#added').text(goal + ' has been added. \nit will appear starting tomorrow').fadeIn('slow', function() {
-        setTimeout(function() { $('#added').fadeOut('slow'); }, 2000);
+    $('#added').text(goal + ' has been added. it will appear starting tomorrow.').fadeIn('slow', function() {
+        setTimeout(function() { $('#added').fadeOut('slow'); }, 3000);
     });
 }
 
