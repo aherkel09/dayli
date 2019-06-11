@@ -16,6 +16,9 @@ class Auth {
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(error) {
+                console.log(error);
+            });
             var user = result.user;
             $('#signin').fadeOut('slow');
             $('#signout').fadeIn('slow');
