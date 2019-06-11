@@ -135,8 +135,9 @@ class Dayli {
 
 function toggleGoalDisplay() {
     $('#goal-container').fadeToggle('slow');
-    var plusMinus = $('#goal-prompt').text().split(' ').splice(-1);
-    if (plusMinus == '+') {
+    var upDown = $('#goal-prompt').text().split(' ').splice(-1);
+    console.log(upDown);
+    if (upDown == '\u25b4') {
         $('#goal-prompt').text('add goals \u25be');
     } else {
         $('#goal-prompt').text('add goals \u25b4');
