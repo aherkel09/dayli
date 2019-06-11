@@ -1,6 +1,11 @@
 class Auth {
     init() {
         var _this = this;
+        
+        $('#signin').click(function() {
+            _this.googleSignIn();
+        });
+        
         $('#signout').click(function() {
             _this.signOut();
         });
@@ -47,12 +52,6 @@ class Auth {
     }
 }
 
-function submitAuthRequest() {
-    var authRequest = new Auth();
-    authRequest.init();
-    authRequest.googleSignIn();
-}
-
 function getDate(date) {
     var text = date.toDateString();
     var year = String(date.getFullYear());
@@ -72,14 +71,15 @@ function getDate(date) {
 }
     
  $(document).ready(function() {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            var auth = new Auth();
-            auth.init();
-            auth.showSignedIn(user.uid);
-        } else {
-            $('#signin').fadeIn('slow');
-            $('#signout').fadeOut('slow');
-        }
-    });
+     var auth = new Auth();
+     auth.init();
+     
+     firebase.auth().onAuthStateChanged(function(user) {
+         if (user) {
+             auth.showSignedIn(user.uid);
+         } else {
+             $('#signin').fadeIn('slow');
+             $('#signout').fadeOut('slow');
+         }
+     });
  });
