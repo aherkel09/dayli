@@ -13,7 +13,7 @@ class Dayli {
         this.goalRef.get().then(function(doc) {
             if (doc.exists) { // make sure user has goals
                 _this.goalData = doc.data();
-                _this.getDoc(_this.goalData); // get today's data
+                _this.getDoc(); // get today's data
             } else {
                 toggleGoalDisplay();
             }
@@ -27,7 +27,7 @@ class Dayli {
         });
     }
     
-    getDoc(goals) {
+    getDoc() {
         var _this = this;
         this.docRef.get().then(function(doc) {
             if (doc.exists) { // check if doc for today exists
@@ -40,16 +40,16 @@ class Dayli {
                     _this.displayGoals(data);
                 }
             } else { // if no doc for today, create one
-                _this.createDoc(goals);
+                _this.createDoc();
             }
         }).catch(function(error) {
             console.log(error);
         });
     }
     
-    createDoc(goalObj) {
+    createDoc() {
         var data = {complete: false};
-        for (var g in goalObj) {
+        for (var g in this.goalData) {
             data[goalObj[g]] = false;
         }
         this.docRef.set(data).catch(function(error) {
