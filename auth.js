@@ -17,7 +17,8 @@ class Auth {
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
             var user = result.user;
-            $('#signin, #signout').fadeToggle('slow');
+            $('#signin').fadeOut('slow');
+            $('#signout').fadeIn('slow');
             _this.getUserData(user.uid);
         }).catch(function(error) {
             console.log(error.message);
@@ -26,10 +27,10 @@ class Auth {
     
     signOut() {
         firebase.auth().signOut().then(function() {
-            $('#content, #calendar').fadeOut('slow', function() {
+            $('#content, #calendar, #goal-prompt, #date, #signout').fadeOut('slow', function() {
                 $('#calendar').empty();
             });
-            $('#signout, #signin').fadeToggle('slow');
+            $('#signin').fadeIn('slow');
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
