@@ -24,7 +24,7 @@ class Auth {
     
     signOut() {
         firebase.auth().signOut().then(function() {
-            $('#content, #calendar, #goal-prompt, #date, #signout').fadeOut('slow', function() {
+            $('#content, #calendar, #goal-prompt, #goal-container, #date, #signout').fadeOut('slow', function() {
                 $('#calendar').empty();
             });
             $('#signin').fadeIn('slow');
