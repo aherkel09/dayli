@@ -40,6 +40,7 @@ class Auth {
     }
     
     getUserData(userId) {
+        console.log('getting data...');
         var date = getDate(new Date());
         
         var dayli = new Dayli(userId, date.year, date.date);
