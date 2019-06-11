@@ -48,9 +48,9 @@ class Auth {
 }
 
 function submitAuthRequest() {
-    var auth = new Auth();
-    auth.init();
-    auth.googleSignIn();
+    var authRequest = new Auth();
+    authRequest.init();
+    authRequest.googleSignIn();
 }
 
 function getDate(date) {
