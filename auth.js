@@ -75,6 +75,7 @@ function getDate(date) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var auth = new Auth();
+            auth.init();
             auth.showSignedIn(user.uid);
         } else {
             $('#signin').fadeIn('slow');
