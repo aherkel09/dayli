@@ -15,9 +15,7 @@ class Auth {
         var _this = this;
         var provider = new firebase.auth.GoogleAuthProvider();
         
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            _this.showSignedIn(result.user.uid);
-        }).catch(function(error) {
+        firebase.auth().signInWithPopup(provider).catch(function(error) {
             console.log(error.message);
         });
     }
@@ -40,7 +38,6 @@ class Auth {
     }
     
     getUserData(userId) {
-        console.log('getting data...');
         var date = getDate(new Date());
         
         var dayli = new Dayli(userId, date.year, date.date);
