@@ -11,10 +11,7 @@ class Auth {
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            var user = result.user;
-            $('#signin').fadeOut('slow');
-            $('#signout').fadeIn('slow');
-            _this.getUserData(user.uid);
+            showSignedIn(result.user.uid);
         }).catch(function(error) {
             console.log(error.message);
         });
@@ -29,6 +26,12 @@ class Auth {
         }).catch(function(error) {
             $('#invalid-auth').text(error.message);
         });
+    }
+    
+    showSignedIn(userId) {
+        $('#signin').fadeOut('slow');
+        $('#signout').fadeIn('slow');
+        _this.getUserData(userId);
     }
     
     getUserData(userId) {
@@ -71,8 +74,8 @@ function getDate(date) {
  $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            $('#signin').fadeOut('slow');
-            $('#signout').fadeIn('slow');
+            var auth = new Auth();
+            auth.showSignedIn(user.uid);
         } else {
             $('#signin').fadeIn('slow');
             $('#signout').fadeOut('slow');
