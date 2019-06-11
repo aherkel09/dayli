@@ -11,7 +11,7 @@ class Auth {
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            showSignedIn(result.user.uid);
+            _this.showSignedIn(result.user.uid);
         }).catch(function(error) {
             console.log(error.message);
         });
@@ -31,7 +31,7 @@ class Auth {
     showSignedIn(userId) {
         $('#signin').fadeOut('slow');
         $('#signout').fadeIn('slow');
-        _this.getUserData(userId);
+        this.getUserData(userId);
     }
     
     getUserData(userId) {
