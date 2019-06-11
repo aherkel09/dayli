@@ -3,15 +3,17 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
-        this.goalsRef = firebase.firestore().collection(this.uid).doc('goals');
+        this.goalRef = firebase.firestore().collection(this.uid).doc('goals');
+        this.goalData = null;
         this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
     init() {
         var _this = this;
-        this.goalsRef.get().then(function(doc) {
+        this.goalRef.get().then(function(doc) {
             if (doc.exists) { // make sure user has goals
-                _this.getDoc(doc.data()); // get today's data
+                _this.goalData = doc.data();
+                _this.getDoc(_this.goalData); // get today's data
             } else {
                 toggleGoalDisplay();
             }
@@ -57,22 +59,17 @@ class Dayli {
     }
     
     addGoal(goal) {
-        var _this = this;
         var data = {};
         data[goal] = goal;
-        this.goalsRef.get().then(function(doc) {
-            if (doc.exists) {
-                _this.goalsRef.update(data).then(function() {
-                    showAdded();
-                });
-            } else {
-                _this.goalsRef.set(data).then(function() {
-                    showAdded();
-                });
-            }
-        }).catch(function(error) {
-            console.log(error);
-        });
+        if (this.goalData != null) {
+            this.goalRef.update(data).then(function() {
+                showAdded();
+            });
+        } else {
+            _this.goalRef.set(data).then(function() {
+                showAdded();
+            });
+        }
     }
     
     displayGoals(data) {
