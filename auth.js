@@ -1,9 +1,4 @@
 class Auth {
-    constructor(email, password) {
-        this.email = email;
-        this.password = password;
-    }
-    
     init() {
         var _this = this;
         $('#signout').click(function() {
@@ -16,9 +11,6 @@ class Auth {
         var provider = new firebase.auth.GoogleAuthProvider();
         
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(error) {
-                console.log(error);
-            });
             var user = result.user;
             $('#signin').fadeOut('slow');
             $('#signout').fadeIn('slow');
@@ -53,7 +45,7 @@ class Auth {
 }
 
 function submitAuthRequest() {
-    var auth = new Auth($('#email').val(), $('#password').val());
+    var auth = new Auth();
     auth.init();
     auth.googleSignIn();
 }
@@ -76,4 +68,14 @@ function getDate(date) {
     };
 }
     
-    
+ $(document).ready(function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $('#signin').fadeOut('slow');
+            $('#signout').fadeIn('slow');
+        } else {
+            $('#signin').fadeIn('slow');
+            $('#signout').fadeOut('slow');
+        }
+    });
+ });
