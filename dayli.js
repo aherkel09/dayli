@@ -63,11 +63,11 @@ class Dayli {
         data[goal] = goal;
         if (this.goalData != null) {
             this.goalRef.update(data).then(function() {
-                showAdded();
+                showAdded(goal);
             });
         } else {
             _this.goalRef.set(data).then(function() {
-                showAdded();
+                showAdded(goal);
             });
         }
     }
@@ -143,7 +143,7 @@ function toggleGoalDisplay() {
     }
 }
 
-function showAdded() {
+function showAdded(goal) {
     $('#goal-input').val('');
     $('#added').text('added ' + goal).fadeIn('slow', function() {
         $('#added').fadeOut('slow');
