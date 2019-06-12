@@ -8,6 +8,16 @@
 	--greyscale: #f2f2f2;
 }
 
+/* Alt Color Scheme
+:root {
+	--brand: #EEF66C;
+	--accent: #FDB813;
+	--light: #62C2CC;
+	--dark: #F68B1F;
+	--greyscale: #f2f2f2;
+}
+*/
+
 .brand { color: var(--brand); }
 .accent { color: var(--accent); }
 .light { color: var(--light); }
