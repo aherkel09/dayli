@@ -115,7 +115,9 @@ button:hover {
 /* Header */
 
 header {
-	width: 95%;
+	display: flex;
+	justify-content: space-between;
+	width: 75%;
 	margin: 0.25em auto;
 }
 
@@ -127,7 +129,7 @@ header {
 	height: 1.5em;
     	padding: 0.125em;
     	background-color: var(--dark);
-    	border: 0.25em solid var(--accent);
+    	border: 2px solid var(--accent);
 	border-radius: 0.5em;
 	margin: 0;
 }
