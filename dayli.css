@@ -112,6 +112,27 @@ button:hover {
 
 
 
+/* Header */
+
+header {
+	width: 95%;
+	margin: 0.25em auto;
+}
+
+#logo {
+	height: 1.5em;
+    	padding: 0.125em;
+    	border: 2px solid var(--greyscale);
+    	border-radius: 1.5em;
+	margin: 0;
+}
+
+#site-title {
+	margin: 0 0 0.5em 0;
+}
+
+
+
 /* Content */
 
 .loader {
@@ -139,18 +160,6 @@ button:hover {
 
 .right {
 	text-align: right;
-}
-
-#logo {
-	height: 1.5em;
-    	padding: 0.125em;
-    	border: 2px solid var(--greyscale);
-    	border-radius: 1.5em;
-	margin: 0;
-}
-
-#site-title {
-	margin: 0 0 0.5em 0;
 }
 
 .content-grid {
