@@ -43,20 +43,22 @@
         <h1 id="site-title">dayli</h1>
       </a>
       
-      <div class="inline">
-        <p class="hidden" id="goal-prompt">add goals &#x25BC;</p>
-      </div>
+      <div class="inline" id="user-options">
+        <div class="inline">
+          <p class="hidden" id="goal-prompt">add goals &#x25BC;</p>
+        </div>
+
+        <div class="inline" id="auth">
+          <button type="button" class="hidden" id="signin">sign in with google</button>
+          <button type="button" class="hidden" id="signout">sign out</button>
+        </div>
       
-      <div class="inline" id="auth">
-        <button type="button" class="hidden" id="signin">sign in with google</button>
-        <button type="button" class="hidden" id="signout">sign out</button>
-      </div>
-      
-      <p id="invalid-auth"></p>
-      <p class="hidden" id="added"></p>
-      <div class="hidden" id="goal-container">
-        <input type="text" name="goal" id="goal-input" placeholder="enter goal"><br>
-        <button type="button" id="add-goal">add goal</button>
+        <p id="invalid-auth"></p>
+        <p class="hidden" id="added"></p>
+        <div class="hidden" id="goal-container">
+          <input type="text" name="goal" id="goal-input" placeholder="enter goal"><br>
+          <button type="button" id="add-goal">add goal</button>
+        </div>
       </div>
     </header>
     
