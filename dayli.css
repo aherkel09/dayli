@@ -119,6 +119,10 @@ header {
 	margin: 0.25em auto;
 }
 
+#logo, #site-title {
+	display: inline-block;
+}
+
 #logo {
 	height: 1.5em;
     	padding: 0.125em;
