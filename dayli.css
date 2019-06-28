@@ -126,8 +126,9 @@ header {
 #logo {
 	height: 1.5em;
     	padding: 0.125em;
-    	background-color: var(--accent);
-    	border-radius: 1.5em;
+    	background-color: var(--dark);
+    	border: 0.25em solid var(--accent);
+	border-radius: 0.5em;
 	margin: 0;
 }
 
