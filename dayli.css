@@ -141,6 +141,18 @@ button:hover {
 	text-align: right;
 }
 
+#logo {
+	height: 1.5em;
+    	padding: 0.125em;
+    	border: 2px solid var(--greyscale);
+    	border-radius: 1.5em;
+	margin: 0;
+}
+
+#site-title {
+	margin: 0 0 0.5em 0;
+}
+
 .content-grid {
 	width: 100%;
 	display: grid;
