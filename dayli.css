@@ -30,7 +30,7 @@
 html {
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-color: var(--light);
+	background-color: var(--brand);
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	font-size: large;
 	word-wrap: break-word;
@@ -56,12 +56,12 @@ body:before {
 	width: 100%;
 	height: 100%;
 	z-index: -10;
-	background-color: var(--light);
+	background-color: var(--brand);
 	background: url(dayli-sun.png) no-repeat center center;
 	-webkit-background-size: contain;
 	-moz-background-size: contain;
 	-o-background-size: contain;
-	background-size: contain;
+	background-size: 75%;
 }
 
 a {
