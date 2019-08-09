@@ -57,7 +57,7 @@ body:before {
 	height: 100%;
 	z-index: -10;
 	background-color: var(--brand);
-	background: url(dayli-sun-dark.png) no-repeat center center;
+	background: url(dayli-sun.png) no-repeat center center;
 	-webkit-background-size: contain;
 	-moz-background-size: contain;
 	-o-background-size: contain;
