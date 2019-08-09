@@ -18,7 +18,7 @@ class Calendar {
         });
         $('.jsCalendar-current')
             .attr('id', _this.date)
-            .css('color', 'var(--brand)');
+            .css('color', 'var(--light)');
 
         dayliCalendar.select(_this.daysComplete);
         styleSelected();
@@ -33,7 +33,7 @@ class Calendar {
         dayliCalendar.onMonthChange(function(event, dateClicked) {
             var thisMonth = _this.date.split('-')[1];
             if (String(dateClicked.getMonth()+1) == thisMonth) {
-                $('#' + _this.date).css('color', 'var(--brand)');
+                $('#' + _this.date).css('color', 'var(--light)');
             } else {
                 $('#' + _this.date).css('color', 'var(--greyscale)');
             }
