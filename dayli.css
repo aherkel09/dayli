@@ -61,7 +61,7 @@ body:before {
 	-webkit-background-size: contain;
 	-moz-background-size: contain;
 	-o-background-size: contain;
-	background-size: 75%;
+	background-size: 50%;
 }
 
 a {
@@ -217,7 +217,7 @@ header {
 		grid-template-columns: repeat(auto-fit, 25%);
 	}
 	body:before {
-		background-size: 50%;
+		background-size: 33%;
 	}
 }
 
@@ -227,6 +227,6 @@ header {
 		grid-template-columns: repeat(auto-fit, 20%);
 	}
 	body:before {
-		background-size: 33%;
+		background-size: 25%;
 	}
 }
