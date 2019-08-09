@@ -216,11 +216,17 @@ header {
 	.content-grid {
 		grid-template-columns: repeat(auto-fit, 25%);
 	}
+	body:before {
+		background-size: 50%;
+	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media screen and (min-width: 992px) {
 	.content-grid {
 		grid-template-columns: repeat(auto-fit, 20%);
+	}
+	body:before {
+		background-size: 33%;
 	}
 }
