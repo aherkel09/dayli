@@ -96,7 +96,7 @@ class Dayli {
         $('#goal-grid').append(
             '<div class="goal card" id="' + goal + '"><h3>' + goal + '</h3></div>'
         );
-        if (progress[1] > 0) {
+        if (progress[1] > 1) {
             $('#' + goal).append(
                 '<p>' + 
                     '<input size="4" class="progress-input" id="' + goal + '-progress" value="' + progress[0] + '">' + 
