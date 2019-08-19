@@ -100,9 +100,9 @@ class Dayli {
             $('#' + goal).append(
                 '<p><input class="progress-input" id="' + goal + '-progress" value="' + progress[0] + '"> / ' + progress[1] + '</p>'
             );
-            _this.addProgressListener(goal, progress[1]); // update progress on input change
+            this.addProgressListener(goal, progress[1]); // update progress on input change
         } else {
-            _this.addClick(goal); // add click event handler to single-step goal widgets
+            this.addClick(goal); // add click event handler to single-step goal widgets
         }
             
     }
