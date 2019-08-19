@@ -22,8 +22,9 @@ class Dayli {
         });
         
         $('#add-goal').click(function() {
-            var goal = $('#goal-input').val();
-            _this.addGoal(goal);
+            var goal = $('#goal-input').val().toLowerCase();
+            var amount = $('#amount-input').val();
+            _this.addGoal(goal, amount);
         });
     }
     
@@ -50,7 +51,7 @@ class Dayli {
     createDoc() {
         var data = {complete: false};
         for (var g in this.goalData) {
-            data[this.goalData[g]] = false;
+            data[g] = [0, this.goalData[g]];
         }
         this.docRef.set(data).catch(function(error) {
             console.log(error);
@@ -58,9 +59,14 @@ class Dayli {
         this.displayGoals(data);
     }
     
-    addGoal(goal) {
+    addGoal(goal, amount) {
         var data = {};
-        data[goal] = goal;
+        if (amount && !isNaN(amount)) {
+            data[goal] = amount;
+        } else {
+            data[goal] = 1;
+        }
+        
         if (this.goalData != null) {
             this.goalRef.update(data).then(function() {
                 showAdded(goal);
@@ -78,34 +84,51 @@ class Dayli {
         $('#content').fadeOut('slow', function() {
             $('#goal-grid').empty();
             for (var d in data) {
-                if (d != 'complete' && data[d] == false) { // create goal widget for all incomplete goals
-                    _this.createWidget(d);
+                if (d != 'complete' && data[d][0] < data[d][1]) { // create goal widget for all incomplete goals
+                    _this.createWidget(d, data[d]);
                 }
             }
-            _this.addClick(); // add click event handler to all goal widgets
             $('#content').fadeIn('slow');
         });
     }
     
-    createWidget(goal) {
+    createWidget(goal, progress) {
         $('#goal-grid').append(
             '<div class="goal card" id="' + goal + '"><h3>' + goal + '</h3></div>'
         );
+        if (progress[1] > 0) {
+            $('#' + goal).append(
+                '<p><input class="progress-input" id="' + goal + '-progress" value="' + progress[0] + '"> / ' + progress[1] + '</p>'
+            );
+            _this.addProgressListener(goal, progress[1]); // update progress on input change
+        } else {
+            _this.addClick(goal); // add click event handler to single-step goal widgets
+        }
+            
     }
 
-    addClick() {
+    addClick(goal) {
         var _this = this;
-        $('.card').off('click');
-        $('.card').click(function(ev) {
-            var goal = $(ev.target).closest('.card').attr('id');
-            _this.markDone(goal);
+        $('#' + goal).off('click');
+        $('#' + goal).click(function(ev) {
+            _this.updateProgress(goal, 1, 1);
+        });
+    }
+    
+    addProgressListener(goal, amount) {
+        var _this = this;
+        $('#' + goal + '-progress').change(function() {
+            var progress = $('#' + goal + '-progress').val();
+            if (!isNaN(progress)) {
+                _this.updateProgress(goal, progress, amount)
+            }
         });
     }
                 
-    markDone(goal) {
+    updateProgress(goal, progress, amount) {
         var _this = this;
         var data = {};
-        data[goal] = true;
+        data[goal] = [progress, amount];
         this.docRef.update(data).then(function() {
             _this.getDoc();
         }).catch(function(error) {
@@ -116,7 +139,7 @@ class Dayli {
     checkComplete(data) {
         var complete = [];
         for (var d in data) {
-            if (data[d] == true && d != 'complete') {
+            if (data[d][0] >= data[d][1] && d != 'complete') {
                 complete.push(d);
             }
         }        
