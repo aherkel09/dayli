@@ -142,7 +142,7 @@ class Dayli {
     checkComplete(data) {
         var complete = [];
         for (var d in data) {
-            if (!data[d].isArray() && data[d] == true && d != 'complete') { // support legacy data structure
+            if (!Array.isArray(data[d]) && data[d] == true && d != 'complete') { // support legacy data structure
                 complete.push(d);
             } else if (data[d][0] >= data[d][1] && d != 'complete') {
                 complete.push(d);
