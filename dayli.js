@@ -62,7 +62,7 @@ class Dayli {
     addGoal(goal, amount) {
         var data = {};
         if (amount && !isNaN(amount)) {
-            data[goal] = amount;
+            data[goal] = Number(amount);
         } else {
             data[goal] = 1;
         }
@@ -123,7 +123,7 @@ class Dayli {
         $('#' + goal + '-progress').change(function() {
             var progress = $('#' + goal + '-progress').val();
             if (!isNaN(progress)) {
-                _this.updateProgress(goal, progress, amount)
+                _this.updateProgress(goal, Number(progress), amount)
             }
         });
     }
