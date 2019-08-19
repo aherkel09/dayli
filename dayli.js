@@ -98,7 +98,11 @@ class Dayli {
         );
         if (progress[1] > 0) {
             $('#' + goal).append(
-                '<p><input class="progress-input" id="' + goal + '-progress" value="' + progress[0] + '"> / ' + progress[1] + '</p>'
+                '<p><input ' + 
+                    'class="progress-input" ' + 
+                    'id="' + goal + '-progress" value="' + progress[0] + '"> / ' + progress[1] + 
+                    'size="4"' + 
+                '</p>'
             );
             this.addProgressListener(goal, progress[1]); // update progress on input change
         } else {
