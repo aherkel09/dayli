@@ -163,9 +163,9 @@ function toggleGoalDisplay() {
     $('#goal-container').fadeToggle('slow');
     var upDown = $('#goal-prompt').text().split(' ').splice(-1);
     if (upDown == '\u25b4') {
-        $('#goal-prompt').text('add goals \u25be');
+        $('#goal-prompt').text('add/update goals \u25be');
     } else {
-        $('#goal-prompt').text('add goals \u25b4');
+        $('#goal-prompt').text('add/update goals \u25b4');
     }
 }
 
