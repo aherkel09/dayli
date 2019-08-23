@@ -177,7 +177,7 @@ function toggleDay(ev) {
 
 function showAdded(goal) {
     $('#goal-input').val('');
-    $('#added').text('your goal,' + goal + ', has been updated. changes will appear starting tomorrow.').fadeIn('slow', function() {
+    $('#added').text('your goal, ' + goal + ', has been updated. changes will appear starting tomorrow.').fadeIn('slow', function() {
         setTimeout(function() { $('#added').fadeOut('slow'); }, 3000);
     });
 }
