@@ -35,6 +35,7 @@ html {
 	font-size: large;
 	word-wrap: break-word;
 	text-align: center;
+	text-transform: lowercase;
 	color: var(--greyscale);
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
