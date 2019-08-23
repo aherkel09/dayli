@@ -168,7 +168,7 @@ header {
 	justify-content: center;
 }
 
-.card {
+.card, #select-days {
 	background-color: rgba(103, 96, 135, 0.75);
 	border: 0.25em solid var(--accent);
 	border-radius: 0.5em;
