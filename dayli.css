@@ -186,6 +186,14 @@ header {
 	cursor: pointer;
 }
 
+.selected-day, .deselected-day {
+	border: none;
+}
+
+.deselected-day {
+	background-color: transparent;
+}
+
 #title, #date {
 	margin: 0;
 }
