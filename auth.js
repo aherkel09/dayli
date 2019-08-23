@@ -51,7 +51,7 @@ class Auth {
 }
 
 function getDate(date) {
-    var text = date.toDateString();
+    var text = date.toDateString().toLowerCase();
     var year = String(date.getFullYear());
     var month = date.getMonth() + 1;
     var day = date.getDate();
