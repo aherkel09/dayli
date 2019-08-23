@@ -95,7 +95,7 @@ button {
 	transition: transform .2s;
 }
 
-button:hover {
+button:not(.selected-day):not(.deselected-day):hover {
 	color: var(--accent);
 	border: 0.25em solid var(--accent);
 	transform: scale(1.1);
@@ -187,7 +187,12 @@ header {
 }
 
 .selected-day, .deselected-day {
+	color: var(--greyscale);
 	border: none;
+}
+
+.selected-day {
+	background-color: var(--accent);
 }
 
 .deselected-day {
