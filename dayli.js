@@ -171,6 +171,10 @@ function toggleGoalDisplay() {
     }
 }
 
+function toggleDay(ev) {
+    $(ev.target).toggleClass('deselected-day');
+}
+
 function showAdded(goal) {
     $('#goal-input').val('');
     $('#added').text('your goal,' + goal + ', has been updated. changes will appear starting tomorrow.').fadeIn('slow', function() {
