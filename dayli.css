@@ -83,6 +83,7 @@ input {
 	margin: 0.25em;
 	text-align: center;
 	border: 0.25em solid var(--dark);
+	border-radius: 0.5em;
 }
 
 button {
