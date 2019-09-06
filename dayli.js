@@ -3,16 +3,20 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
+        this.weekday = new Date(this.year, this.date.split('-')[0], this.date.split('-')[1]).getDay();
         this.goalRef = firebase.firestore().collection(this.uid).doc('goals');
         this.goalData = null;
+        this.daysRef = firebase.firestore().collection(this.uid).doc('days');
+        this.dayData = null;
         this.docRef = firebase.firestore().collection(this.uid + '-' + this.year).doc(this.date);
     }
     
     init() {
         var _this = this;
-        this.goalRef.get().then(function(doc) {
-            if (doc.exists) { // make sure user has goals
-                _this.goalData = doc.data();
+        this.goalRef.get().then(function(goals) {
+            if (goals.exists) { // make sure user has goals
+                _this.setDays();
+                _this.goalData = goals.data();
                 _this.getDoc(); // get today's data
             } else {
                 toggleGoalDisplay();
@@ -25,6 +29,7 @@ class Dayli {
             var goal = $('#goal-input').val().toLowerCase();
             var amount = $('#amount-input').val();
             _this.addGoal(goal, amount);
+            _this.setDays(goal);
         });
     }
     
@@ -49,9 +54,26 @@ class Dayli {
     }
     
     createDoc() {
+        var _this = this;
+        
+        this.daysRef.get().then(function(days) {
+            if (days.exists) {
+                _this.dayData = days.data();
+                _this.setGoals(_this.dayData);
+            } else {
+                toggleGoalDisplay();
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    
+    setGoals(dayData) {
         var data = {complete: false};
         for (var g in this.goalData) {
-            data[g] = [0, this.goalData[g]];
+            if (dayData[g].contains(this.weekday)) { // if user has goal today
+                data[g] = [0, this.goalData[g]];
+            }
         }
         this.docRef.set(data).catch(function(error) {
             console.log(error);
@@ -90,6 +112,26 @@ class Dayli {
             }
             $('#content').fadeIn('slow');
         });
+    }
+    
+    getDays() {
+        var selected = [];
+        $('.selected-day').each(function() {
+            selected.push($(this).attr('id'));
+        });
+        
+        return selected;
+    }
+    
+    setDays(goal) {
+        var data = {};
+        data[goal] = this.getDays();
+        
+        if (this.dayData != null) {
+            this.daysRef.update(data);
+        } else {
+            this.daysRef.set(data);
+        }
     }
     
     createWidget(goal, progress) {
@@ -172,7 +214,7 @@ function toggleGoalDisplay() {
 }
 
 function toggleDay(ev) {
-    $(ev.target).toggleClass('deselected-day');
+    $(ev.target).toggleClass('selected-day').toggleClass('deselected-day');
 }
 
 function showAdded(goal) {
