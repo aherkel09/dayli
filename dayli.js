@@ -71,6 +71,7 @@ class Dayli {
         var data = {complete: false};
         
         for (var g in this.goalData) {
+            console.log(this.dayData);
             console.log(g, this.dayData[g]);
             if (dayData[g].contains(this.weekday)) { // if goal occurs today
                 data[g] = [0, this.goalData[g]];
