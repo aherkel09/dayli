@@ -15,7 +15,6 @@ class Dayli {
         var _this = this;
         this.goalRef.get().then(function(goals) {
             if (goals.exists) { // make sure user has goals
-                _this.setDays();
                 _this.goalData = goals.data();
                 _this.getDoc(); // get today's data
             } else {
