@@ -58,7 +58,7 @@ class Dayli {
         this.daysRef.get().then(function(doc) {
             if (doc.exists) {
                 _this.dayData = doc.data();
-                _this.setGoals(_this.dayData);
+                _this.setGoals();
             } else {
                 toggleGoalDisplay();
             }
@@ -67,13 +67,12 @@ class Dayli {
         });
     }
     
-    setGoals(dayData) {
+    setGoals() {
         var data = {complete: false};
         
         for (var g in this.goalData) {
-            console.log(this.dayData);
-            console.log(g, this.dayData[g]);
-            if (dayData[g].contains(this.weekday)) { // if goal occurs today
+            console.log(typeof this.dayData[g])
+            if (this.dayData[g].contains(this.weekday)) { // if goal occurs today
                 data[g] = [0, this.goalData[g]];
             }
         }
