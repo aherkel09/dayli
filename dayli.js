@@ -132,11 +132,13 @@ class Dayli {
         var data = {};
         data[goal] = this.getDays();
         
-        if (this.dayData != null) {
-            this.daysRef.update(data);
-        } else {
-            this.daysRef.set(data);
-        }
+        this.daysRef.get().then(function(doc) {
+            if (doc.exists) {
+                this.daysRef.update(data);
+            } else {
+                this.daysRef.set(data);
+            }
+        });
     }
     
     createWidget(goal, progress) {
