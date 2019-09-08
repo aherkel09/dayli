@@ -69,17 +69,11 @@ class Dayli {
     
     setGoals() {
         var _this = this;
-        var days = [];
         var data = {complete: false};
         
         for (var g in this.goalData) {
-            Object.values(this.dayData[g]).map(function(val) {
-                return days.push(_this.dayData[g][val]);
-            });
-            
-            console.log(days);
-            
-            if (days.contains(this.weekday)) { // if goal occurs today
+            console.log(this.dayData[g][this.weekday]);
+            if (this.dayData[g].includes(this.weekday)) { // if goal occurs today
                 data[g] = [0, this.goalData[g]];
             }
         }
