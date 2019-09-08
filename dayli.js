@@ -3,8 +3,7 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
-        console.log(this.date.split('-'));
-        this.weekday = new Date(this.year, this.date.split('-')[0], this.date.split('-')[1]).getDay();
+        this.weekday = new Date(this.year, this.date.split('-')[0] - 1, this.date.split('-')[1]).getDay();
         this.goalRef = firebase.firestore().collection(this.uid).doc('goals');
         this.goalData = null;
         this.daysRef = firebase.firestore().collection(this.uid).doc('days');
