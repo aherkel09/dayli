@@ -129,14 +129,15 @@ class Dayli {
     }
     
     setDays(goal) {
+        var _this = this;
         var data = {};
         data[goal] = this.getDays();
         
         this.daysRef.get().then(function(doc) {
             if (doc.exists) {
-                this.daysRef.update(data);
+                _this.daysRef.update(data);
             } else {
-                this.daysRef.set(data);
+                _this.daysRef.set(data);
             }
         });
     }
