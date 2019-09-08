@@ -72,7 +72,7 @@ class Dayli {
         var data = {complete: false};
         
         for (var g in this.goalData) {
-            if (this.dayData[g].includes(this.weekday)) { // if goal occurs today
+            if (this.dayData[g].includes(String(this.weekday))) { // if goal occurs today
                 console.log(g, 'occurs on day', this.weekday);
                 data[g] = [0, this.goalData[g]];
             } else {
