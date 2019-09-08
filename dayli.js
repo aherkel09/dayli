@@ -3,6 +3,7 @@ class Dayli {
         this.uid = uid;
         this.year = year;
         this.date = date;
+        console.log(this.date.split('-'));
         this.weekday = new Date(this.year, this.date.split('-')[0], this.date.split('-')[1]).getDay();
         this.goalRef = firebase.firestore().collection(this.uid).doc('goals');
         this.goalData = null;
@@ -73,10 +74,7 @@ class Dayli {
         
         for (var g in this.goalData) {
             if (this.dayData[g].includes(String(this.weekday))) { // if goal occurs today
-                console.log(g, 'occurs on day', this.weekday);
                 data[g] = [0, this.goalData[g]];
-            } else {
-                console.log(this.dayData[g], 'does not include', this.weekday);
             }
         }
         
